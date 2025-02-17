@@ -23,7 +23,7 @@ repository               : "academicpages/academicpages.github.io"
 author:
   # Biographic information
   
-  avatar           : "C:/Users/dhana/Sharma-eng-cli.github.io/images/1663669347612.jpg" # path of the avatar image
+  avatar           : "1663669347612.jpg" # path of the avatar image
   name             : "Dr. Jagpreet Singh"
   pronouns         : # example: "he/him"
   bio              : "Assistant Professor in Computer Science & Engineering at IIT Ropar. Research interests include real-time scheduling, parallel processing, and ad hoc networks. Former faculty at IIIT Allahabad and Senior Researcher at ETH Zurich."
