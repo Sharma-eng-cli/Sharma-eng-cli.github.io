@@ -9,11 +9,11 @@
 # Basic Site Settings
 locale                   : "en-US"
 site_theme               : "default"
-title                    : "Your Name / Site Title"
+title                    : "My Education Platform"
 title_separator          : "-"
-name                     : &name "Your Name"
+name                     : &name "My Education Platform"
 description              : &description "personal description"
-url                      : https://academicpages.github.io # the base hostname & protocol for your site e.g. "https://[your GitHub username].github.io"
+url                      : https://Sharma-eng-cli.github.io # the base hostname & protocol for your site e.g. "https://[your GitHub username].github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "academicpages/academicpages.github.io"
 
@@ -22,18 +22,19 @@ repository               : "academicpages/academicpages.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "profile.png"
-  name             : "Your Sidebar Name"
-  pronouns         : # example: "she/her"  
-  bio              : "Short biography for the left-hand sidebar"
-  location         : "Earth"
-  employer         : "Red Brick University"
-  uri              : # URL
-  email            : "none@example.org" 
+  
+  avatar           : "C:/Users/dhana/Sharma-eng-cli.github.io/images/1663669347612.jpg" # path of the avatar image
+  name             : "Dr. Jagpreet Singh"
+  pronouns         : # example: "he/him"
+  bio              : "Assistant Professor in Computer Science & Engineering at IIT Ropar. Research interests include real-time scheduling, parallel processing, and ad hoc networks. Former faculty at IIIT Allahabad and Senior Researcher at ETH Zurich."
+  location         : "Rupnagar, Punjab, India"
+  employer         : "Indian Institute of Technology Ropar"
+  uri              : "https://www.iitrpr.ac.in/jagpreet-singh"
+  email            : " jagpreets@iitrpr.ac.in"
 
   # Academic websites
   arxiv            : # URL - Update with the correct link to your profile
-  googlescholar    : "https://scholar.google.com/citations?user=PS_CX0AAAAAJ"
+  googlescholar    : "https://scholar.google.com/citations?user=8qUKIE4AAAAJ"
   impactstory      : # URL
   orcid            : "http://orcid.org/yourorcidurl"
   semantic         : # URL
