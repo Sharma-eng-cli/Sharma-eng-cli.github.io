@@ -23,8 +23,8 @@ jobs:
         pip install --upgrade pip
         pip install jupyter pandas requests beautifulsoup4 geopy
         pip install getorg --upgrade
-      retry: 3
-
+        retry: 3
+     
     - name: Run Jupyter Notebook
       run: |
         jupyter nbconvert --to notebook --execute talkmap.ipynb --output talkmap_out.ipynb
