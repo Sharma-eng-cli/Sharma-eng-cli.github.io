@@ -68,8 +68,8 @@ For any queries, feel free to **[contact us](#)** or visit our [FAQ section](#).
 
 ## Stay Connected  
 
-🔹 **Website:** [(https://sharma-eng-cli.github.io/)]  
-🔹 **Email:** [YourEmail]  
-🔹 **Follow Us:** [Social Media Links]  
+🔹 **Website:** [https://sharma-eng-cli.github.io/]
+<!-- 🔹 **Email:** [Y]   -->
+<!-- 🔹 **Follow Us:**  -->
 
 Let's build a brighter future together, one lesson at a time! 🚀  
