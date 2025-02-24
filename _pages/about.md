@@ -33,7 +33,7 @@ Dr. Jagpreet Singh ensures that learning is both **engaging and impactful**.
 ## What We Offer
 
 ### 🎯 **Comprehensive Courses**
-- In-depth lessons on [Subject 1], [Subject 2], [Subject 3], and more.
+- In-depth lessons on Iot, Networking, Parallel Computing, and more.
 - Well-structured modules with **real-world examples**.
 - Step-by-step guidance for beginners to advanced learners.
 
@@ -69,7 +69,6 @@ For any queries, feel free to **[contact us](#)** or visit our [FAQ section](#).
 ## Stay Connected  
 
 🔹 **Website:** [https://sharma-eng-cli.github.io/]
-<!-- 🔹 **Email:** [Y]   -->
-<!-- 🔹 **Follow Us:**  -->
+
 
 Let's build a brighter future together, one lesson at a time! 🚀  
