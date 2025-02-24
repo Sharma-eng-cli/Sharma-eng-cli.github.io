@@ -11,7 +11,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - name: Check out repository
+      uses: actions/checkout@v2
 
     - name: Set up Python
       uses: actions/setup-python@v2
@@ -23,16 +24,16 @@ jobs:
         pip install --upgrade pip
         pip install jupyter pandas requests beautifulsoup4 geopy
         pip install getorg --upgrade
-        retry: 3
-     
-    - name: Run Jupyter Notebook
+        pip install jedi==0.19.2 stack-data==0.6.3 exceptiongroup==1.2.2 pexpect==4.9.0 platformdirs==4.3.6
+
+    - name: Execute Jupyter Notebook
       run: |
         jupyter nbconvert --to notebook --execute talkmap.ipynb --output talkmap_out.ipynb
 
     - name: Commit changes
       run: |
-        git config user.name "github-actions[bot]"
-        git config user.email "github-actions[bot]@users.noreply.github.com"
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
         git add .
         git commit -m "Automated update of talk locations" || echo "No changes to commit"
         git push
