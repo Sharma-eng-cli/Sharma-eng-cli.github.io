@@ -7,7 +7,7 @@ redirect_from:
   - /about.html
 ---
 
-## About [Your Education Platform Name]
+## About My Education Platform
 
 Welcome to **My Education Platform**, an innovative learning platform designed to provide high-quality educational resources, interactive courses, and expert guidance to students, professionals, and lifelong learners. Our mission is to make education accessible, engaging, and tailored to meet diverse learning needs.
 
