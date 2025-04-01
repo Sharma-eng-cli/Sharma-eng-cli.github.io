@@ -1,7 +1,7 @@
 ---
 title: "New Conference Paper Title"
 collection: publications
-category: conference
+category: conferences
 permalink: /publication/2025-05-10-new-conference-paper
 excerpt: 'This research focuses on AI-driven optimization in large-scale networks.'
 date: 2025-05-10
