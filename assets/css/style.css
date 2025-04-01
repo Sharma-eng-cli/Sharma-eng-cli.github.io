@@ -31,3 +31,32 @@
     opacity: 0;
     transform: translateY(-10px);
 }
+/* Make checkboxes bigger and more appealing */
+.filter-container input[type="checkbox"] {
+    transform: scale(1.5); /* Increases the checkbox size */
+    margin-right: 8px; /* Adds spacing between checkbox and label */
+    cursor: pointer;
+}
+
+/* Style the labels to improve readability */
+.filter-container label {
+    font-size: 18px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Adds space between checkbox and text */
+}
+/* Make category titles more elegant */
+.category-title {
+    font-size: 22px; /* Adjust the size */
+    font-weight: 500; /* Less bold */
+    color: #444; /* Softer color */
+    margin-bottom: 10px;
+}
+/* Make filter checkboxes appear in a horizontal row */
+.filter-container {
+    display: flex;
+    justify-content: center; /* Centers the filters */
+    gap: 15px; /* Adds spacing between checkboxes */
+    padding: 10px;
+}
