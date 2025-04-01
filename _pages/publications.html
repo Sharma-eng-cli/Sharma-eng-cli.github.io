@@ -6,31 +6,95 @@ author_profile: true
 ---
 
 {% if site.author.googlescholar %}
-  <div class="wordwrap">You can also find my articles on <a href="{{site.author.googlescholar}}">my Google Scholar profile</a>.</div>
+  <div class="wordwrap">You can also find my articles on <a href="{{ site.author.googlescholar }}">my Google Scholar profile</a>.</div>
 {% endif %}
 
 {% include base_path %}
 
-<!-- New style rendering if publication categories are defined -->
-{% if site.publication_category %}
-  {% for category in site.publication_category  %}
-    {% assign title_shown = false %}
-    {% for post in site.publications reversed %}
-      {% if post.category != category[0] %}
-        {% continue %}
-      {% endif %}
-      {% unless title_shown %}
-        <h2>{{ category[1].title }}</h2><hr />
-        {% assign title_shown = true %}
-      {% endunless %}
-      {% include archive-single.html %}
+<!-- Filtering Section -->
+<div class="filter-container">
+    <label><input type="checkbox" id="selectAll" checked> Select All</label>
+    <label><input type="checkbox" id="journalFilter" checked> Journals</label>
+    <label><input type="checkbox" id="conferenceFilter" checked> Conferences</label>
+</div>
+
+<!-- Publications List -->
+<div id="publications">
+  {% if site.publication_category %}
+    {% for category in site.publication_category %}
+      {% assign title_shown = false %}
+      {% for post in site.publications reversed %}
+        {% if post.category != category[0] %}
+          {% continue %}
+        {% endif %}
+        {% unless title_shown %}
+          <h2 class="category-title" data-category="{{ category[0] }}">{{ category[1].title }}</h2><hr />
+          {% assign title_shown = true %}
+        {% endunless %}
+        <div class="publication fade" data-category="{{ post.category }}">
+          {% include archive-single.html %}
+        </div>
+      {% endfor %}
     {% endfor %}
-  {% endfor %}
-{% else %}
-  {% for post in site.publications reversed %}
-    {% include archive-single.html %}
-  {% endfor %}
-{% endif %}
+  {% else %}
+    {% for post in site.publications reversed %}
+      <div class="publication fade" data-category="{{ post.category }}">
+        {% include archive-single.html %}
+      </div>
+    {% endfor %}
+  {% endif %}
+</div>
 
+<!-- JavaScript for Filtering with Animation -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const journalFilter = document.getElementById("journalFilter");
+    const conferenceFilter = document.getElementById("conferenceFilter");
+    const selectAll = document.getElementById("selectAll");
 
+    function filterPublications() {
+        let hasJournal = journalFilter.checked;
+        let hasConference = conferenceFilter.checked;
 
+        document.querySelectorAll(".publication").forEach(pub => {
+            const category = pub.getAttribute("data-category");
+            const isJournal = category.includes("journal");
+            const isConference = category.includes("conference");
+
+            if ((hasJournal && isJournal) || (hasConference && isConference)) {
+                pub.classList.remove("hidden");
+                pub.classList.add("fade-in");
+            } else {
+                pub.classList.add("fade-out");
+                setTimeout(() => pub.classList.add("hidden"), 300); // Wait for animation
+            }
+        });
+
+        // Hide category titles if no matching publications
+        document.querySelectorAll(".category-title").forEach(title => {
+            const category = title.getAttribute("data-category");
+            const hasVisible = [...document.querySelectorAll(`.publication[data-category='${category}']`)]
+                .some(pub => !pub.classList.contains("hidden"));
+            title.style.display = hasVisible ? "block" : "none";
+        });
+
+        // Update Select All checkbox
+        selectAll.checked = hasJournal && hasConference;
+    }
+
+    // Select All functionality
+    selectAll.addEventListener("change", function () {
+        journalFilter.checked = this.checked;
+        conferenceFilter.checked = this.checked;
+        filterPublications();
+    });
+
+    journalFilter.addEventListener("change", filterPublications);
+    conferenceFilter.addEventListener("change", filterPublications);
+    
+    filterPublications(); // Apply initial filter
+});
+</script>
+
+<!-- Include External CSS -->
+<link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css">
