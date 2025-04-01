@@ -15,14 +15,39 @@ With a strong focus on **academic excellence, skill development, and real-world 
 
 ---
 
-## Meet Your Instructor  
+<!-- ## Meet Your Instructor  
 
 👨‍🏫 **Dr. Jagpreet Singh**  
 📚 **Expertise:** Real-time Scheduling, Parallel Processing, Ad Hoc Networks, Computer Science & Engineering  
 🎓 **Education & Background:** Assistant Professor, Computer Science & Engineering, IIT Ropar | Former Faculty at IIIT Allahabad | Senior Researcher at ETH Zurich 
-🌟 **Teaching Philosophy:** Dr. Jagpreet Singh believes in a practical and research-driven approach to learning. His teaching methodology focuses on bridging theory with real-world applications, ensuring students gain both conceptual clarity and hands-on experience. By integrating cutting-edge research with interactive problem-solving, he empowers learners to tackle real-world challenges in computing and engineering.
+🌟 **Teaching Philosophy:** Dr. Jagpreet Singh believes in a practical and research-driven approach to learning. His teaching methodology focuses on bridging theory with real-world applications, ensuring students gain both conceptual clarity and hands-on experience. By integrating cutting-edge research with interactive problem-solving, he empowers learners to tackle real-world challenges in computing and engineering. -->
+## Meet Your Instructor  
 
-With extensive academic and research experience spanning IIT Ropar, IIIT Allahabad, and ETH Zurich, Dr. Singh brings a unique perspective to computer science education. His expertise in real-time systems, distributed computing, and network optimization makes him a trusted mentor for students aspiring to excel in these fields. Through well-structured courses, industry insights, and engaging projects, he fosters innovation, critical thinking, and technical excellence.
+<div style="display: flex; flex-direction: column; align-items: center; margin-bottom: 20px;">
+
+### 👨‍🏫 **Dr. Jagpreet Singh**
+
+</div>
+
+<div style="text-align: center; font-size: 1.2rem; margin-bottom: 20px; color: #555;">
+   📚 **Expertise:** Real-time Scheduling, Parallel Processing, Ad Hoc Networks, Computer Science & Engineering  
+</div>
+
+<div style="text-align: center; font-size: 1.2rem; margin-bottom: 20px; color: #555;">
+   🎓 **Education & Background:** Assistant Professor, Computer Science & Engineering, IIT Ropar | Former Faculty at IIIT Allahabad | Senior Researcher at ETH Zurich 
+</div>
+
+<div style="text-align: center; font-size: 1.2rem; margin-bottom: 20px; color: #555;">
+   🌟 **Teaching Philosophy:**  
+   Dr. Jagpreet Singh believes in a practical and research-driven approach to learning. His teaching methodology focuses on bridging theory with real-world applications, ensuring students gain both conceptual clarity and hands-on experience. By integrating cutting-edge research with interactive problem-solving, he empowers learners to tackle real-world challenges in computing and engineering.
+   
+   With extensive academic and research experience spanning IIT Ropar, IIIT Allahabad, and ETH Zurich, Dr. Singh brings a unique perspective to computer science education. His expertise in real-time systems, distributed computing, and network optimization makes him a trusted mentor for students aspiring to excel in these fields. Through well-structured courses, industry insights, and engaging projects, he fosters innovation, critical thinking, and technical excellence.
+</div>
+
+<div style="text-align: center; margin-top: 40px;">
+   <img src="https://via.placeholder.com/200" alt="Instructor Photo" style="border-radius: 50%; border: 5px solid #ddd;">
+</div>
+
 
 Dr. Jagpreet Singh ensures that learning is both **engaging and impactful**.
 
@@ -68,7 +93,8 @@ For any queries, feel free to **[contact us](#)** or visit our [FAQ section](#).
 
 ## Stay Connected  
 
-🔹 **Website:** https://sharma-eng-cli.github.io/
+
+🔹 **Website:** [https://sharma-eng-cli.github.io/](https://sharma-eng-cli.github.io/)
 
 
 Let's build a brighter future together, one lesson at a time! 🚀  
