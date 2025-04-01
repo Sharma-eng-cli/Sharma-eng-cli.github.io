@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Loop through all publications to filter based on the checked checkboxes
         document.querySelectorAll(".publication").forEach(pub => {
             const category = pub.getAttribute("data-category");
-            const isJournal = category.includes("journal");
+            const isJournal = category.includes("journal") || category.includes("manuscripts");
             const isConference = category.includes("conference");
 
             // Display publication content if its category matches the selected filters
