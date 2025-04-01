@@ -7,24 +7,23 @@ document.addEventListener("DOMContentLoaded", function () {
         let hasJournal = journalFilter.checked;
         let hasConference = conferenceFilter.checked;
 
-        // Iterate through each publication to apply the correct filtering
+        // Loop through all publications to filter based on the checked checkboxes
         document.querySelectorAll(".publication").forEach(pub => {
             const category = pub.getAttribute("data-category");
             const isJournal = category.includes("journal");
             const isConference = category.includes("conference");
 
-            // Show all publications, but organize based on filters
-            if ((hasJournal && isJournal) || (hasConference && isConference) || (hasJournal && hasConference)) {
+            // Display publication content if its category matches the selected filters
+            if ((hasJournal && isJournal) || (hasConference && isConference)) {
                 pub.classList.remove("hidden", "fade-out");
                 pub.classList.add("fade-in");
             } else {
-                // If the publication is not part of the selected filter category, it gets faded out
                 pub.classList.add("fade-out");
-                setTimeout(() => pub.classList.add("hidden"), 300); // Wait for fade-out animation to complete
+                setTimeout(() => pub.classList.add("hidden"), 300); // Wait for animation
             }
         });
 
-        // Hide category titles if no matching publications
+        // Hide category titles if no matching publications are visible
         document.querySelectorAll(".category-title").forEach(title => {
             const category = title.getAttribute("data-category");
             const hasVisible = [...document.querySelectorAll(`.publication[data-category='${category}']`)]
@@ -32,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
             title.style.display = hasVisible ? "block" : "none";
         });
 
-        // Ensure "Select All" checkbox reflects the state of both filters
+        // Update Select All checkbox state
         selectAll.checked = hasJournal && hasConference;
     }
 
@@ -44,10 +43,8 @@ document.addEventListener("DOMContentLoaded", function () {
         filterPublications();
     });
 
-    // Event listeners for the individual category checkboxes
     journalFilter.addEventListener("change", filterPublications);
     conferenceFilter.addEventListener("change", filterPublications);
 
-    // Apply the filter on page load
-    filterPublications(); 
+    filterPublications(); // Apply initial filter
 });
