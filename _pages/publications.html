@@ -13,37 +13,38 @@ author_profile: true
 
 <!-- Filtering Section -->
 <div class="filter-container">
-    <label><input type="checkbox" id="selectAll" checked> Select All</label>
-    <label><input type="checkbox" id="journalFilter" checked> Journals</label>
-    <label><input type="checkbox" id="conferenceFilter" checked> Conferences</label>
+  <label><input type="checkbox" id="selectAll" checked> Select All</label>
+  <label><input type="checkbox" id="journalFilter" checked> Journals</label>
+  <label><input type="checkbox" id="conferenceFilter" checked> Conferences</label>
 </div>
 
 <!-- Publications List -->
 <div id="publications">
-  {% if site.publication_category %}
-    {% for category in site.publication_category %}
-      {% assign title_shown = false %}
-      {% for post in site.publications reversed %}
-        {% if post.category != category[0] %}
-          {% continue %}
-        {% endif %}
-        {% unless title_shown %}
-          <h2 class="category-title" data-category="{{ category[0] }}">{{ category[1].title }}</h2><hr />
-          {% assign title_shown = true %}
-        {% endunless %}
-        <div class="publication fade" data-category="{{ post.category }}">
-          {% include archive-single.html %}
-        </div>
-      {% endfor %}
-    {% endfor %}
-  {% else %}
+{% if site.publication_category %}
+  {% for category in site.publication_category %}
+    {% assign title_shown = false %}
     {% for post in site.publications reversed %}
+      {% if post.category != category[0] %}
+        {% continue %}
+      {% endif %}
+      {% unless title_shown %}
+        <h2 class="category-title" data-category="{{ category[0] }}">{{ category[1].title }}</h2><hr />
+        {% assign title_shown = true %}
+      {% endunless %}
       <div class="publication fade" data-category="{{ post.category }}">
         {% include archive-single.html %}
       </div>
     {% endfor %}
-  {% endif %}
+  {% endfor %}
+{% else %}
+  {% for post in site.publications reversed %}
+    <div class="publication fade" data-category="{{ post.category }}">
+      {% include archive-single.html %}
+    </div>
+  {% endfor %}
+{% endif %}
 </div>
+
 
 <!-- Include External CSS -->
 <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css">
