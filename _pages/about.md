@@ -35,7 +35,7 @@ With a strong focus on **academic excellence, skill development, and real-world 
          style="border-radius: 10px; /* Square corners with slight rounding */
                 border: 5px solid #555; /* Darker border for contrast */
                 width: 150px; height: 150px; 
-                object-fit: cover; box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);">
+                object-fit: cover; box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);"><br>
 
 👨‍🏫 Dr. Jagpreet Singh
 
