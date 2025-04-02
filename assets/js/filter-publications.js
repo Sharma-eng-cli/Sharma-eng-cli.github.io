@@ -3,36 +3,30 @@ document.addEventListener("DOMContentLoaded", function () {
     const conferenceFilter = document.getElementById("conferenceFilter");
     const selectAll = document.getElementById("selectAll");
     const publications = document.querySelectorAll(".publication");
-    const categoryTitles = document.querySelectorAll(".category-title");
 
     function filterPublications() {
         const hasJournal = journalFilter.checked;
         const hasConference = conferenceFilter.checked;
 
-        let hasVisibleJournals = false;
-        let hasVisibleConferences = false;
-
         publications.forEach(pub => {
             const category = pub.getAttribute("data-category").toLowerCase();
-            const isJournal = category.includes("journal") || category.includes("manuscripts");
-            const isConference = category.includes("conference") || category.includes("conferences");
+            const isJournal = category.includes("journal") || category.includes("manuscript");
+            const isConference = category.includes("conference");
 
             if ((hasJournal && isJournal) || (hasConference && isConference)) {
                 pub.classList.remove("hidden", "fade-out");
                 pub.classList.add("fade-in");
-                if (isJournal) hasVisibleJournals = true;
-                if (isConference) hasVisibleConferences = true;
             } else {
                 pub.classList.add("fade-out");
                 setTimeout(() => pub.classList.add("hidden"), 300);
             }
         });
 
-        // Show headings even if no publications are visible
+        // Ensure headings are always visible
         document.querySelectorAll(".category-title").forEach(title => {
-            title.style.display = "block";  // Ensure headings are always visible
+            title.style.display = "block"; // Always show the headings
             if (title.nextElementSibling && title.nextElementSibling.tagName === "HR") {
-                title.nextElementSibling.style.display = "block"; // Keep HR visible
+                title.nextElementSibling.style.display = "block"; // Ensure HR is visible
             }
         });
 
@@ -57,5 +51,5 @@ document.addEventListener("DOMContentLoaded", function () {
         selectAll.checked = journalFilter.checked && conferenceFilter.checked;
     });
 
-    filterPublications(); // Initially filter to hide all publications
+    filterPublications(); // Apply filtering on page load
 });
