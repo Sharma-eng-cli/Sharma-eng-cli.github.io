@@ -1,58 +1,61 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const selectAll = document.getElementById("selectAll");
     const journalFilter = document.getElementById("journalFilter");
     const conferenceFilter = document.getElementById("conferenceFilter");
-    const publications = document.querySelectorAll(".publication");
-    const categoryTitles = document.querySelectorAll(".category-title");
+    const selectAll = document.getElementById("selectAll");
 
     function filterPublications() {
-        const showJournals = journalFilter.checked;
-        const showConferences = conferenceFilter.checked;
+        const hasJournal = journalFilter.checked;
+        const hasConference = conferenceFilter.checked;
 
-        publications.forEach(pub => {
-            const category = pub.getAttribute("data-category");
-            if ((category === "journal" && showJournals) || (category === "conference" && showConferences)) {
-                pub.style.display = "block";
+        // Loop through all publications and apply filtering
+        document.querySelectorAll(".publication").forEach(pub => {
+            const category = pub.getAttribute("data-category").toLowerCase();
+            const isJournal = category.includes("journal") || category.includes("manuscript");
+            const isConference = category.includes("conference");
+
+            if ((hasJournal && isJournal) || (hasConference && isConference)) {
+                pub.classList.remove("hidden", "fade-out");
+                pub.classList.add("fade-in");
             } else {
-                pub.style.display = "none";
+                pub.classList.add("fade-out");
+                setTimeout(() => pub.classList.add("hidden"), 300); // Delay to allow fade-out animation
             }
         });
 
-        // Hide category titles if all their publications are hidden
-        categoryTitles.forEach(title => {
-            const category = title.getAttribute("data-category");
-            const hasVisiblePublications = [...publications].some(
-                pub => pub.getAttribute("data-category") === category && pub.style.display === "block"
-            );
+        // Hide category titles if no publications are visible
+        document.querySelectorAll(".category-title").forEach(title => {
+            const category = title.getAttribute("data-category").toLowerCase();
+            const hasVisible = [...document.querySelectorAll(`.publication[data-category='${category}']`)]
+                .some(pub => !pub.classList.contains("hidden"));
 
-            if (hasVisiblePublications) {
+            if (hasVisible) {
                 title.style.display = "block";
-                title.nextElementSibling.style.display = "block"; // Keep the <hr />
+                if (title.nextElementSibling.tagName === "HR") {
+                    title.nextElementSibling.style.display = "block"; // Keep HR if title is visible
+                }
             } else {
                 title.style.display = "none";
-                title.nextElementSibling.style.display = "none"; // Hide the <hr />
+                if (title.nextElementSibling.tagName === "HR") {
+                    title.nextElementSibling.style.display = "none"; // Hide HR if no publications
+                }
             }
         });
+
+        // Update "Select All" checkbox based on the individual checkboxes
+        selectAll.checked = hasJournal && hasConference;
     }
 
-    // Event listeners for checkboxes
+    // Select All functionality
     selectAll.addEventListener("change", function () {
-        const checked = selectAll.checked;
-        journalFilter.checked = checked;
-        conferenceFilter.checked = checked;
+        const isChecked = this.checked;
+        journalFilter.checked = isChecked;
+        conferenceFilter.checked = isChecked;
         filterPublications();
     });
 
-    journalFilter.addEventListener("change", function () {
-        filterPublications();
-        selectAll.checked = journalFilter.checked && conferenceFilter.checked;
-    });
+    // Individual checkbox event listeners
+    journalFilter.addEventListener("change", filterPublications);
+    conferenceFilter.addEventListener("change", filterPublications);
 
-    conferenceFilter.addEventListener("change", function () {
-        filterPublications();
-        selectAll.checked = journalFilter.checked && conferenceFilter.checked;
-    });
-
-    // Initial filtering on page load
-    filterPublications();
+    filterPublications(); // Apply initial filtering on page load
 });
