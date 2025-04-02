@@ -52,6 +52,7 @@ With a strong focus on **academic excellence, skill development, and real-world 
                 object-fit: cover; box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);">
 </div>
 
+<br>
 
 
 Dr. Jagpreet Singh ensures that learning is both **engaging and impactful**.
