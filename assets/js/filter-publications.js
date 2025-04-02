@@ -28,14 +28,11 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
 
-        categoryTitles.forEach(title => {
-            const category = title.getAttribute("data-category").toLowerCase();
-            const hasVisible = (category === "journal" && hasVisibleJournals) || 
-                               (category === "conference" && hasVisibleConferences);
-
-            title.style.display = hasVisible ? "block" : "none";
+        // Show headings even if no publications are visible
+        document.querySelectorAll(".category-title").forEach(title => {
+            title.style.display = "block";  // Ensure headings are always visible
             if (title.nextElementSibling && title.nextElementSibling.tagName === "HR") {
-                title.nextElementSibling.style.display = hasVisible ? "block" : "none";
+                title.nextElementSibling.style.display = "block"; // Keep HR visible
             }
         });
 
