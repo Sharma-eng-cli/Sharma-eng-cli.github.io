@@ -51,5 +51,5 @@ document.addEventListener("DOMContentLoaded", function () {
         selectAll.checked = journalFilter.checked && conferenceFilter.checked;
     });
 
-    filterPublications(); // Apply filtering on page load
+    setTimeout(filterPublications, 500); // Ensure Filtering is applied after publications are loaded 
 });
