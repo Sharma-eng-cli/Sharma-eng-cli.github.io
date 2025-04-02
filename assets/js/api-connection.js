@@ -4,7 +4,9 @@ import { getFirestore } from "https://www.gstatic.com/firebasejs/10.0.0/firebase
 // 🔥 Firebase Configuration (Replace with your Firebase config)
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
+
     apiKey: "",
+
     authDomain: "my-education-platform-ffa4b.firebaseapp.com",
     projectId: "my-education-platform-ffa4b",
     storageBucket: "my-education-platform-ffa4b.firebasestorage.app",
