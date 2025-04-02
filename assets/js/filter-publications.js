@@ -14,8 +14,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
         publications.forEach(pub => {
             const category = pub.getAttribute("data-category").toLowerCase();
-            const isJournal = category.includes("journal") || category.includes("manuscript");
-            const isConference = category.includes("conference");
+            const isJournal = category.includes("journal") || category.includes("manuscripts");
+            const isConference = category.includes("conference") || category.includes("conferences");
 
             if ((hasJournal && isJournal) || (hasConference && isConference)) {
                 pub.classList.remove("hidden", "fade-out");
