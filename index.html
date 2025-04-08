@@ -4,8 +4,19 @@ title: Instructor Profile
 permalink: /
 ---
 
-{% assign about_page = site.pages | where: "title", "About" | first %}
-{% if about_page %}
-  {{ about_page.content }}
-{% endif %}
+<div class="container">
+  <div class="row">
+    <!-- Left Column: Instructor Profile -->
+    <div class="col-md-4">
+      {% include author-profile.html %}  <!-- This loads the sidebar profile -->
+    </div>
 
+    <!-- Right Column: About Content -->
+    <div class="col-md-8">
+      {% assign about_page = site.pages | where: "title", "About" | first %}
+      {% if about_page %}
+        {{ about_page.content }}
+      {% endif %}
+    </div>
+  </div>
+</div>
