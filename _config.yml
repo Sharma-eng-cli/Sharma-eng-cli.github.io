@@ -353,4 +353,8 @@ compress_html:
   ignore:
     envs: development
 
+collections:
+  publications:
+    output: true
+    permalink: /publications/:path/
 
