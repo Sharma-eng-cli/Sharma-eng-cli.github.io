@@ -8,19 +8,28 @@ document.addEventListener("DOMContentLoaded", function () {
         const hasJournal = journalFilter.checked;
         const hasConference = conferenceFilter.checked;
 
-        publications.forEach(pub => {
-            const category = pub.getAttribute("data-category").toLowerCase();
-            const isJournal = category.includes("journal") || category.includes("manuscript");
-            const isConference = category.includes("conference");
-
-            if ((hasJournal && isJournal) || (hasConference && isConference)) {
+        if (!hasJournal && !hasConference) {
+            // ✅ Show all publications when no filter is selected
+            publications.forEach(pub => {
                 pub.classList.remove("hidden", "fade-out");
                 pub.classList.add("fade-in");
-            } else {
-                pub.classList.add("fade-out");
-                setTimeout(() => pub.classList.add("hidden"), 300);
-            }
-        });
+            });
+        } else {
+            // ✅ Filter publications based on checkboxes
+            publications.forEach(pub => {
+                const category = pub.getAttribute("data-category").toLowerCase();
+                const isJournal = category.includes("journal") || category.includes("manuscript");
+                const isConference = category.includes("conference");
+
+                if ((hasJournal && isJournal) || (hasConference && isConference)) {
+                    pub.classList.remove("hidden", "fade-out");
+                    pub.classList.add("fade-in");
+                } else {
+                    pub.classList.add("fade-out");
+                    setTimeout(() => pub.classList.add("hidden"), 300);
+                }
+            });
+        }
 
         // Ensure headings are always visible
         document.querySelectorAll(".category-title").forEach(title => {
@@ -33,6 +42,17 @@ document.addEventListener("DOMContentLoaded", function () {
         // Update Select All checkbox state
         selectAll.checked = hasJournal && hasConference;
     }
+
+    // ✅ Default all filters to unchecked on first load
+    journalFilter.checked = false;
+    conferenceFilter.checked = false;
+    selectAll.checked = false;
+
+    // ✅ Keep all publications visible initially
+    publications.forEach(pub => {
+        pub.classList.remove("hidden", "fade-out");
+        pub.classList.add("fade-in");
+    });
 
     selectAll.addEventListener("change", function () {
         const isChecked = this.checked;
@@ -50,6 +70,4 @@ document.addEventListener("DOMContentLoaded", function () {
         filterPublications();
         selectAll.checked = journalFilter.checked && conferenceFilter.checked;
     });
-
-    setTimeout(filterPublications, 500); // Ensure Filtering is applied after publications are loaded 
 });
