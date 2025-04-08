@@ -320,6 +320,11 @@ pagination:
   limit: 0
   sort_field: "date"
   sort_reverse: true
+  auto: 
+    enabled: true
+    categories: true
+    collections: true
+
 
 plugins:
   - jekyll-feed
@@ -374,6 +379,10 @@ compress_html:
   clippings: all
   ignore:
     envs: development
+
+github: 
+  repository_nwo: Sharma-eng-cli/Sharma-eng-cli.github.io # e.g. "username/repo"
+
 
 
 
