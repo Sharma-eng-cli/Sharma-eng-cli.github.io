@@ -157,6 +157,7 @@ analytics:
 include:
   - .htaccess
   - files  # Ensure this is a necessary folder
+  - _pages
 exclude:
   - "*.sublime-project"
   - "*.sublime-workspace"

@@ -1,11 +1,10 @@
 ---
-permalink: /
-title: "Welcome to My Education Platform - Empowering Learning and Growth"
+title: "About"
+permalink: /about/
+layout: default
 author_profile: true
-redirect_from: 
-  - /about/
-  - /about.html
 ---
+
 
 ## About My Education Platform
 
