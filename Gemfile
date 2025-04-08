@@ -11,4 +11,4 @@ group :jekyll_plugins do
 
 end
 
-gem 'github-pages'
+gem 'github-pages', group: :jekyll_plugins
