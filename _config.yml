@@ -227,6 +227,9 @@ collections:
   talks:
     output: true
     permalink: /:collection/:path/
+  publications:
+    output: true
+    permalink: /publications/:title/
 
 
 # These settings control how pages and collections are included in the site
@@ -372,7 +375,5 @@ compress_html:
   ignore:
     envs: development
 
-# collections:
-#   publications:
-#     output: true
-#     permalink: /publications/:path/
+
+
