@@ -5,10 +5,7 @@ permalink: /
 ---
 
 {% assign about_page = site.pages | where: "title", "About" | first %}
-{{ about_page.content }}
-<!-- ---
-layout: default
-title: Welcome
-permalink: /
----
-{% include_relative _pages/about.md %} -->
+{% if about_page %}
+  {{ about_page.content }}
+{% endif %}
+

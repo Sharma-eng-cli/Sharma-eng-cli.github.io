@@ -1,11 +1,11 @@
 ---
 title: "About"
 permalink: /about/
-layout: default
-author_profile: true
+layout: single
+author_profile: true # Enables the left-side instructor profile
 ---
 
-# {{ site.title }}
+<!-- # {{ site.title }} -->
 ## About My Education Platform
 
 Welcome to **My Education Platform**, an innovative learning platform designed to provide high-quality educational resources, interactive courses, and expert guidance to students, professionals, and lifelong learners. Our mission is to make education accessible, engaging, and tailored to meet diverse learning needs.
