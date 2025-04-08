@@ -3,7 +3,8 @@ layout: archive
 title: "Publications"
 permalink: /publications/
 author_profile: true
-pagination: true
+pagination:
+  enabled: true
 ---
 
 {% if site.author.googlescholar %}
@@ -22,29 +23,12 @@ pagination: true
 
 <!-- Publications List -->
 <div id="publications">
-{% if site.publication_category %}
-  {% for category in site.publication_category %}
-    {% assign title_shown = false %}
-    {% for post in paginator.posts %}
-      {% if post.category != category[0] %}
-        {% continue %}
-      {% endif %}
-      {% unless title_shown %}
-        <h2 class="category-title" data-category="{{ category[0] }}">{{ category[1].title }}</h2><hr />
-        {% assign title_shown = true %}
-      {% endunless %}
-      <div class="publication fade" data-category="{{ post.category }}">
-        {% include archive-single.html %}
-      </div>
-    {% endfor %}
-  {% endfor %}
-{% else %}
-  {% for post in paginator.posts %}
+  {% assign filtered_publications = site.publications | sort: 'date' | reverse %}
+  {% for post in filtered_publications %}
     <div class="publication fade" data-category="{{ post.category }}">
       {% include archive-single.html %}
     </div>
   {% endfor %}
-{% endif %}
 </div>
 
 <!-- Pagination Controls -->

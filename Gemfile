@@ -7,8 +7,9 @@ group :jekyll_plugins do
   gem 'jekyll-redirect-from'
   gem 'jemoji'
   gem 'webrick', '~> 1.8'
-  gem "faraday-retry"
+  gem 'faraday-retry'
+  gem 'jekyll-paginate-v2'
 
 end
 
-gem 'github-pages', group: :jekyll_plugins
+gem 'github-pages', group: :jekyll_plugins  # Moved outside the block
