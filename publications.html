@@ -1,11 +1,10 @@
 ---
-layout: archive  # Ensure this layout exists or modify it to 'default' if necessary
+layout: archive
 title: "Publications"
 permalink: /publications/
 author_profile: true
 pagination:
   enabled: true
-  collection: publications
 ---
 
 {% if site.author.googlescholar %}
@@ -27,8 +26,8 @@ pagination:
 
 <!-- Publications List -->
 <div id="publications">
-  {% for post in paginator.posts %}
-    <div class="publication fade" data-category="{{ post.category }}">
+  {% for post in site.publications %}
+    <div class="publication fade" data-category="{{ post.category | downcase }}">
       {% include archive-single.html %}
     </div>
   {% endfor %}
