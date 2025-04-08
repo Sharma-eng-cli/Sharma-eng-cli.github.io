@@ -1,22 +1,20 @@
 ---
-layout: default
-title: Instructor Profile
+layout: single
+title: "My Education Platform"
+author_profile: true  # Enables instructor profile in sidebar
 permalink: /
 ---
 
-<div class="container">
-  <div class="row">
-    <!-- Left Column: Instructor Profile -->
-    <div class="col-md-4">
-      {% include author-profile.html %}  <!-- This loads the sidebar profile -->
-    </div>
+Welcome to **My Education Platform**, an innovative learning platform designed to provide high-quality educational resources, interactive courses, and expert guidance to students, professionals, and lifelong learners. Our mission is to make education accessible, engaging, and tailored to meet diverse learning needs.
 
-    <!-- Right Column: About Content -->
-    <div class="col-md-8">
-      {% assign about_page = site.pages | where: "title", "About" | first %}
-      {% if about_page %}
-        {{ about_page.content }}
-      {% endif %}
-    </div>
-  </div>
-</div>
+With a strong focus on **academic excellence, skill development, and real-world applications**, our platform supports learners at different stages of their educational journey. Whether you are looking to master a subject, prepare for exams, or enhance your career skills, you will find valuable content curated by industry professionals and experienced educators.
+
+---
+
+{% comment %} Load About Content dynamically {% endcomment %}
+{% assign about_page = site.pages | where: "permalink", "/about/" | first %}
+{% if about_page %}
+  {{ about_page.content }}
+{% else %}
+  <p><em>About page content is missing.</em></p>
+{% endif %}
