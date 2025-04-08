@@ -156,8 +156,7 @@ analytics:
 # Reading Files
 include:
   - .htaccess
-  - _pages
-  - files
+  - files  # Ensure this is a necessary folder
 exclude:
   - "*.sublime-project"
   - "*.sublime-workspace"
@@ -167,8 +166,8 @@ exclude:
   - .jekyll-assets-cache
   - .sass-cache
   - assets/js/_main.js
-  - assets/js/plugins
-  - assets/js/vendor
+  - assets/js/plugins/
+  - assets/js/vendor/
   - CHANGELOG
   - Capfile
   - config
@@ -190,6 +189,7 @@ keep_files:
   - .svn
 encoding: "utf-8"
 markdown_ext: "markdown,mkdown,mkdn,mkd,md"
+
 
 
 # Conversion
@@ -304,12 +304,13 @@ permalink: /:categories/:title/
 
 # Pagination (Enable for Publications)
 paginate: 10  # Number of publications per page
-# paginate_path: "/_publications/page:num/"
-paginate_page : "C:/Users/dhana/Sharma-eng-cli.github.io/_publications/index.html"
+paginate_path: "/publications/page:num/"
+# paginate_page : "C:/Users/dhana/Sharma-eng-cli.github.io/_publications/index.html"
 
 # Plugins
 plugins:
-  - jekyll-paginate-v2
+  - jekyll-paginate
+
 
 
 

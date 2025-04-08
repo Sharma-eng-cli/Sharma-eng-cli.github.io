@@ -1,4 +1,5 @@
 ---
+---
 layout: archive
 title: "Publications"
 permalink: /publications/
@@ -8,7 +9,10 @@ pagination:
 ---
 
 {% if site.author.googlescholar %}
-  <div class="wordwrap">You can also find my articles on <a href="{{ site.author.googlescholar }}">my Google Scholar profile</a>.</div>
+  <div class="wordwrap">
+    You can also find my articles on 
+    <a href="{{ site.author.googlescholar }}">my Google Scholar profile</a>.
+  </div>
 {% endif %}
 
 {% include base_path %}
@@ -23,8 +27,7 @@ pagination:
 
 <!-- Publications List -->
 <div id="publications">
-  {% assign filtered_publications = site.publications | sort: 'date' | reverse %}
-  {% for post in filtered_publications %}
+  {% for post in paginator.posts %}
     <div class="publication fade" data-category="{{ post.category }}">
       {% include archive-single.html %}
     </div>
