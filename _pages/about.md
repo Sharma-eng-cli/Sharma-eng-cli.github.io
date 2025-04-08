@@ -5,7 +5,7 @@ layout: default
 author_profile: true
 ---
 
-
+# {{ site.title }}
 ## About My Education Platform
 
 Welcome to **My Education Platform**, an innovative learning platform designed to provide high-quality educational resources, interactive courses, and expert guidance to students, professionals, and lifelong learners. Our mission is to make education accessible, engaging, and tailored to meet diverse learning needs.
@@ -40,19 +40,19 @@ With a strong focus on **academic excellence, skill development, and real-world 
 
 </div>
 
-<div style="text-align: center; font-size: 1rem; margin-bottom: 20px; color: #555;">
-📚Expertise: Real-time Scheduling, Parallel Processing, Ad Hoc Networks, Computer Science & Engineering  
+<div style="text-align: justify; font-size: 1rem; margin-bottom: 20px; color: #555; max-width: 800px; margin-left: auto; margin-right: auto;">
+📚 <strong>Expertise:</strong> Real-time Scheduling, Parallel Processing, Ad Hoc Networks, Computer Science & Engineering  
 </div>
 
-<div style="text-align: center; font-size: 1rem; margin-bottom: 20px; color: #555;">
-🎓Education & Background:Assistant Professor, Computer Science & Engineering, IIT Ropar | Former Faculty at IIIT Allahabad | Senior Researcher at ETH Zurich 
+<div style="text-align: justify; font-size: 1rem; margin-bottom: 20px; color: #555; max-width: 800px; margin-left: auto; margin-right: auto;">
+🎓 <strong>Education & Background:</strong> Assistant Professor, Computer Science & Engineering, IIT Ropar | Former Faculty at IIIT Allahabad | Senior Researcher at ETH Zurich  
 </div>
 
-<div style="text-align: center; font-size: 1rem; margin-bottom: 20px; color: #555;">
-🌟Teaching Philosophy:  
-   Dr. Jagpreet Singh believes in a practical and research-driven approach to learning. His teaching methodology focuses on bridging theory with real-world applications, ensuring students gain both conceptual clarity and hands-on experience. By integrating cutting-edge research with interactive problem-solving, he empowers learners to tackle real-world challenges in computing and engineering.
+<div style="text-align: justify; font-size: 1rem; margin-bottom: 20px; color: #555; max-width: 800px; margin-left: auto; margin-right: auto;">
+🌟 <strong>Teaching Philosophy:</strong>  
+Dr. Jagpreet Singh believes in a practical and research-driven approach to learning. His teaching methodology focuses on bridging theory with real-world applications, ensuring students gain both conceptual clarity and hands-on experience. By integrating cutting-edge research with interactive problem-solving, he empowers learners to tackle real-world challenges in computing and engineering.
    
-   With extensive academic and research experience spanning IIT Ropar, IIIT Allahabad, and ETH Zurich, Dr. Singh brings a unique perspective to computer science education. His expertise in real-time systems, distributed computing, and network optimization makes him a trusted mentor for students aspiring to excel in these fields. Through well-structured courses, industry insights, and engaging projects, he fosters innovation, critical thinking, and technical excellence.
+With extensive academic and research experience spanning IIT Ropar, IIIT Allahabad, and ETH Zurich, Dr. Singh brings a unique perspective to computer science education. His expertise in real-time systems, distributed computing, and network optimization makes him a trusted mentor for students aspiring to excel in these fields. Through well-structured courses, industry insights, and engaging projects, he fosters innovation, critical thinking, and technical excellence.
 </div>
 <br>
 Dr. Jagpreet Singh ensures that learning is both **engaging and impactful**.
