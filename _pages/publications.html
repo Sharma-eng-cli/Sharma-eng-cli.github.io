@@ -3,6 +3,7 @@ layout: archive
 title: "Publications"
 permalink: /publications/
 author_profile: true
+pagination: true
 ---
 
 {% if site.author.googlescholar %}
@@ -11,18 +12,20 @@ author_profile: true
 
 {% include base_path %}
 <br>
+
 <!-- Filtering Section -->
 <div class="filter-container">
   <label><input type="checkbox" id="selectAll"> Select All</label>
   <label><input type="checkbox" id="journalFilter"> Journals</label>
   <label><input type="checkbox" id="conferenceFilter"> Conferences</label>
 </div>
+
 <!-- Publications List -->
 <div id="publications">
 {% if site.publication_category %}
   {% for category in site.publication_category %}
     {% assign title_shown = false %}
-    {% for post in site.publications reversed %}
+    {% for post in paginator.posts %}
       {% if post.category != category[0] %}
         {% continue %}
       {% endif %}
@@ -36,7 +39,7 @@ author_profile: true
     {% endfor %}
   {% endfor %}
 {% else %}
-  {% for post in site.publications reversed %}
+  {% for post in paginator.posts %}
     <div class="publication fade" data-category="{{ post.category }}">
       {% include archive-single.html %}
     </div>
@@ -44,6 +47,18 @@ author_profile: true
 {% endif %}
 </div>
 
+<!-- Pagination Controls -->
+<div class="pagination">
+  {% if paginator.previous_page %}
+    <a href="{{ paginator.previous_page_path }}">Previous</a>
+  {% endif %}
+
+  <span>Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
+
+  {% if paginator.next_page %}
+    <a href="{{ paginator.next_page_path }}">Next</a>
+  {% endif %}
+</div>
 
 <!-- Include External CSS -->
 <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css">
