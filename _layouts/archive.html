@@ -11,6 +11,19 @@ layout: default
     {% include breadcrumbs.html %}
   {% endunless %}
 {% endif %}
+{% if paginator.total_pages > 1 %}
+  <div class="pagination">
+    <span>Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
+    
+    {% if paginator.previous_page %}
+      <a href="{{ paginator.previous_page_path }}" class="btn">Previous</a>
+    {% endif %}
+
+    {% if paginator.next_page %}
+      <a href="{{ paginator.next_page_path }}" class="btn">Next</a>
+    {% endif %}
+  </div>
+{% endif %}
 
 <div id="main" role="main">
   {% include sidebar.html %}

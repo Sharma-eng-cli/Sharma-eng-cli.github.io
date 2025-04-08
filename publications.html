@@ -26,7 +26,7 @@ pagination:
 
 <!-- Publications List -->
 <div id="publications">
-  {% for post in site.publications %}
+  {% for post in paginator.posts %}
     <div class="publication fade" data-category="{{ post.category | downcase }}">
       {% include archive-single.html %}
     </div>
@@ -39,7 +39,18 @@ pagination:
     <a href="{{ paginator.previous_page_path }}">Previous</a>
   {% endif %}
 
-  <span>Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
+  <div class="pagination" style="text-align: left;">
+    <span>Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
+  
+    {% if paginator.previous_page %}
+      <a href="{{ paginator.previous_page_path }}">Previous</a>
+    {% endif %}
+  
+    {% if paginator.next_page %}
+      <a href="{{ paginator.next_page_path }}">Next</a>
+    {% endif %}
+  </div>
+  
 
   {% if paginator.next_page %}
     <a href="{{ paginator.next_page_path }}">Next</a>
