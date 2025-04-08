@@ -294,7 +294,7 @@ sass:
 # Outputting
 permalink: /:categories/:title/
 paginate: 10  # Number of publications per page
-paginate_path: "/publications/page:num/"
+paginate_path: "/_publications/publications/page:num/"
 timezone: Etc/UTC # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 
 
