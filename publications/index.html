@@ -63,7 +63,13 @@ categories: ["manuscripts", "conferences"]
   {{ all_publications.content | markdownify }}
 {% endif %} -->
 
-{% include all_publications.md %}
+{% assign all_publications = site.pages | where: "title", "Publications" | first %}
+{% if all_publications %}
+  {{ all_publications.content | markdownify }}
+{% endif %}
+
+<!-- {% include all_publications.md %} If all_publications.md is inside _includes/, you must include it using: -->
+
 
 
 <!-- Include JavaScript for Filtering and Pagination -->
