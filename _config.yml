@@ -394,6 +394,11 @@ compress_html:
 github: 
   repository_nwo: Sharma-eng-cli/Sharma-eng-cli.github.io # e.g. "username/repo"
 
+excerpt_separator: <!--more-->
+excerpt_separator: ""
+
+
+
 
 
 

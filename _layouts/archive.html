@@ -29,7 +29,10 @@ layout: default
             📅 <strong>Date:</strong> {{ pub.date | date: "%B %d, %Y" }}<br>
             🏛 <strong>Venue:</strong> {{ pub.venue }}<br>
             📖 Citation: <em>{{ pub.citation }}</em><br>
+                {% unless pub.excerpt == empty %}
             📝 <em>Excerpt:</em> {{ pub.excerpt }}
+                {% endunless %}
+          
           </li>
         {% endfor %}
       </ul>
