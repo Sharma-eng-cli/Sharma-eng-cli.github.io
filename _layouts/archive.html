@@ -21,21 +21,22 @@ layout: default
 
     <!-- Publications List with Pagination -->
     {% if paginator %}
-      <ul>
+      <ul id="publications-list">
         {% for pub in paginator.posts %}
-         {% if pub.categories contains "conferences" or pub.categories contains "manuscripts" %}
-          <li class="publication" data-category="{{ pub.categories | join: ' ' }}">
-           <strong><a href="{{ pub.url }}">{{ pub.title }}</a></strong><br>
-            <em>{{ pub.author }}</em><br>
-          📅 <strong>Date:</strong> {{ pub.date | date: "%B %d, %Y" }}<br>
-          🏛 <strong>Venue:</strong> {{ pub.venue }}<br>
-          📖 Citation: <em>{{ pub.citation }}</em><br>
-          {% unless pub.excerpt == empty %}
-          📝 <em>Excerpt:</em> {{ pub.excerpt }}
-      {% endunless %}
-    </li>
-  {% endif %}
-{% endfor %}
+          {% assign categories = pub.categories | join: ' ' %}
+          {% if categories contains "conferences" or categories contains "manuscripts" %}
+            <li class="publication" data-category="{{ categories }}">
+              <strong><a href="{{ pub.url }}">{{ pub.title }}</a></strong><br>
+              <em>{{ pub.author }}</em><br>
+              📅 <strong>Date:</strong> {{ pub.date | date: "%B %d, %Y" }}<br>
+              🏛 <strong>Venue:</strong> {{ pub.venue }}<br>
+              📖 Citation: <em>{{ pub.citation }}</em><br>
+              {% if pub.excerpt != empty %}
+                📝 <em>Excerpt:</em> {{ pub.excerpt }}
+              {% endif %}
+            </li>
+          {% endif %}
+        {% endfor %}
       </ul>
 
       <!-- Pagination Controls (Fixed Placement) -->
@@ -50,9 +51,12 @@ layout: default
       </div>
 
     {% else %}
-      <p>No publications found.</p>
+      <p id="no-publications">No publications found.</p>
     {% endif %}
+
+    <!-- Ensure Filtering Script Works -->
     <script src="{{ '/assets/js/filtering-publications.js' | relative_url }}"></script>
+
     <!-- Main Content -->
     {{ content }}
 

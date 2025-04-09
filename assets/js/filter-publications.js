@@ -44,10 +44,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
         filteredPublications = publications.filter(pub => {
             const category = pub.getAttribute("data-category");
+
+            const isJournal = category.includes("journal") || category.includes("manuscript");
+            const isConference = category.includes("conference") || category.includes("conference");
+
             return (
                 (!showJournals && !showConferences) ||  // If nothing is checked, show all
-                (showJournals && category.includes("journal")) ||
-                (showConferences && category.includes("conference"))
+                (showJournals && isJournal) ||
+                (showConferences && isConference)
             );
         });
 
@@ -58,13 +62,8 @@ document.addEventListener("DOMContentLoaded", function () {
         // Update "Select All" checkbox
         selectAll.checked = showJournals && showConferences;
     }
-    
-    document.addEventListener("DOMContentLoaded", function () {
-        filterPublications();  // Ensure the filter runs after elements exist
-    });
-    
 
-    // Initialize event listeners only if the elements exist
+    // Initialize event listeners only if elements exist
     if (prevBtn) {
         prevBtn.addEventListener("click", function () {
             if (currentPage > 1) showPage(currentPage - 1);
