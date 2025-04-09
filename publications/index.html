@@ -58,7 +58,10 @@ categories: ["manuscripts", "conferences"]
 
 
 <!-- Include all_publications.md for Extra Content -->
-{% include_relative ../_pages/all-publications.md %}
+{% assign all_publications = site.pages | where: "title", "Publications" | first %}
+{% if all_publications %}
+  {{ all_publications.content | markdownify }}
+{% endif %}
 
 
 <!-- Include JavaScript for Filtering and Pagination -->
