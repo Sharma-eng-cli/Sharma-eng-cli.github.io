@@ -9,6 +9,10 @@ pagination:
   collection: publications
   categories: ["manuscripts", "conferences"]
 ---
+
+{% capture content %}{% include publications-content.md %}{% endcapture %}
+{{ content | markdownify }}
+
 {% raw %}
 <h2>Journal Papers</h2>
 <ul>
