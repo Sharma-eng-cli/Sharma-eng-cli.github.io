@@ -68,13 +68,13 @@ categories: ["manuscripts", "conferences"]
   {{ all_publications.content | markdownify }}
 {% endif %}
 
-{% for pub in site.pages %}
+<!-- {% for pub in site.pages %}
   {% if pub.layout == "publication" %}
     <li>
       <a href="{{ pub.url }}">{{ pub.title }}</a> - {{ pub.date | date: "%Y" }}
     </li>
   {% endif %}
-{% endfor %}
+{% endfor %} -->
 
 
 <!-- {% include all_publications.md %} If all_publications.md is inside _includes/, you must include it using: -->
