@@ -3,8 +3,6 @@ layout: archive
 title: "Publications"
 permalink: /publications/
 author_profile: true
-pagination:
-  enabled: true
 ---
 
 {% if site.author.googlescholar %}
@@ -24,15 +22,6 @@ pagination:
   <label><input type="checkbox" id="conferenceFilter"> Conferences</label>
 </div>
 
-<!-- Publications List -->
-<!-- <div id="publications">
-  {% for post in paginator.posts %}
-    <div class="publication fade" data-category="{{ post.category | downcase }}">
-      {% include archive-single.html %}
-    </div>
-  {% endfor %}
-</div> -->
-
 <!-- Load Publications from all_publications.md -->
 {% capture publications_content %}
   {% include_relative publications/all_publications.md %}
@@ -43,11 +32,25 @@ pagination:
 </div>
 
 <!-- Pagination Controls -->
+<div id="pagination-controls">
+  <button id="prevPage" disabled>Previous</button>
+  <span id="page-info"></span>
+  <button id="nextPage">Next</button>
+</div>
+<!-- Jekyll based pagination logic is not used here as we are using a custom pagination script. -->
+<!-- The following code is commented out as we are using a custom pagination script. 
+     Uncomment if you want to use Jekyll's built-in pagination. -->
+<!-- 
+{% for post in paginator.posts %}
+  <div class="publication fade" data-category="{{ post.category | downcase }}">
+    {% include archive-single.html %}
+  </div>
+{% endfor %}
+
 <div class="pagination">
   {% if paginator.previous_page %}
     <a href="{{ paginator.previous_page_path }}">Previous</a>
   {% endif %}
-
   <div class="pagination" style="text-align: left;">
     <span>Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
   
@@ -59,43 +62,13 @@ pagination:
       <a href="{{ paginator.next_page_path }}">Next</a>
     {% endif %}
   </div>
-  
-
   {% if paginator.next_page %}
     <a href="{{ paginator.next_page_path }}">Next</a>
   {% endif %}
-</div>
+</div> -->
 
-
-<h2>Journal Papers</h2>
-<ul>
-{% for post in site.publications %}
-  {% if post.category == "manuscripts" %}
-    <li>
-      <strong><a href="{{ post.paperurl }}">{{ post.title }}</a></strong>  
-      <br> 🏛 <em>{{ post.venue }}</em>  
-      <br> 📅 {{ post.date | date: "%B %d, %Y" }}  
-      <br> 📖 Citation: {{ post.citation }}  
-      <br> 📝 {{ post.excerpt }}
-    </li>
-  {% endif %}
-{% endfor %}
-</ul>
-
-<h2>Conference Papers</h2>
-<ul>
-{% for post in site.publications %}
-  {% if post.category == "conferences" %}
-    <li>
-      <strong><a href="{{ post.paperurl }}">{{ post.title }}</a></strong>  
-      <br> 🏛 <em>{{ post.venue }}</em>  
-      <br> 📅 {{ post.date | date: "%B %d, %Y" }}  
-      <br> 📖 Citation: {{ post.citation }}  
-      <br> 📝 {{ post.excerpt }}
-    </li>
-  {% endif %}
-{% endfor %}
-</ul>
+<!-- Include JavaScript for pagination -->
+<script src="{{ site.baseurl }}/assets/js/paginate-publications.js"></script>
 
 <!-- Include External CSS -->
 <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css">

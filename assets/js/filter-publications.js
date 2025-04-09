@@ -2,72 +2,77 @@ document.addEventListener("DOMContentLoaded", function () {
     const journalFilter = document.getElementById("journalFilter");
     const conferenceFilter = document.getElementById("conferenceFilter");
     const selectAll = document.getElementById("selectAll");
-    const publications = document.querySelectorAll(".publication");
+    const publications = Array.from(document.querySelectorAll(".publication"));
+
+    const itemsPerPage = 5;  // Adjust the number of publications per page
+    let currentPage = 1;
+    let filteredPublications = [...publications];
+
+    function updatePaginationControls() {
+        const totalPages = Math.ceil(filteredPublications.length / itemsPerPage);
+        document.getElementById("page-info").textContent = `Page ${currentPage} of ${totalPages || 1}`;
+        
+        document.getElementById("prevPage").disabled = (currentPage === 1);
+        document.getElementById("nextPage").disabled = (currentPage === totalPages || totalPages === 0);
+    }
+
+    function showPage(page) {
+        currentPage = page;
+        publications.forEach(pub => pub.classList.add("hidden"));
+
+        const startIdx = (currentPage - 1) * itemsPerPage;
+        const endIdx = startIdx + itemsPerPage;
+        
+        filteredPublications.slice(startIdx, endIdx).forEach(pub => {
+            pub.classList.remove("hidden", "fade-out");
+            pub.classList.add("fade-in");
+        });
+
+        updatePaginationControls();
+    }
 
     function filterPublications() {
         const hasJournal = journalFilter.checked;
         const hasConference = conferenceFilter.checked;
 
-        if (!hasJournal && !hasConference) {
-            // ✅ Show all publications when no filter is selected
-            publications.forEach(pub => {
-                pub.classList.remove("hidden", "fade-out");
-                pub.classList.add("fade-in");
-            });
-        } else {
-            // ✅ Filter publications based on checkboxes
-            publications.forEach(pub => {
-                const category = pub.getAttribute("data-category").toLowerCase();
-                const isJournal = category.includes("journal") || category.includes("manuscript");
-                const isConference = category.includes("conference");
+        filteredPublications = publications.filter(pub => {
+            const category = pub.getAttribute("data-category");
+            const isJournal = category === "journal";
+            const isConference = category === "conference";
 
-                if ((hasJournal && isJournal) || (hasConference && isConference)) {
-                    pub.classList.remove("hidden", "fade-out");
-                    pub.classList.add("fade-in");
-                } else {
-                    pub.classList.add("fade-out");
-                    setTimeout(() => pub.classList.add("hidden"), 300);
-                }
-            });
-        }
-
-        // Ensure headings are always visible
-        document.querySelectorAll(".category-title").forEach(title => {
-            title.style.display = "block"; // Always show the headings
-            if (title.nextElementSibling && title.nextElementSibling.tagName === "HR") {
-                title.nextElementSibling.style.display = "block"; // Ensure HR is visible
-            }
+            return (!hasJournal && !hasConference) || (hasJournal && isJournal) || (hasConference && isConference);
         });
+
+        currentPage = 1;  // Reset to first page after filtering
+        showPage(currentPage);
 
         // Update Select All checkbox state
         selectAll.checked = hasJournal && hasConference;
     }
 
-    // ✅ Default all filters to unchecked on first load
+    // Initialize filters and pagination
     journalFilter.checked = false;
     conferenceFilter.checked = false;
     selectAll.checked = false;
 
-    // ✅ Keep all publications visible initially
-    publications.forEach(pub => {
-        pub.classList.remove("hidden", "fade-out");
-        pub.classList.add("fade-in");
+    document.getElementById("prevPage").addEventListener("click", function () {
+        if (currentPage > 1) showPage(currentPage - 1);
+    });
+
+    document.getElementById("nextPage").addEventListener("click", function () {
+        const totalPages = Math.ceil(filteredPublications.length / itemsPerPage);
+        if (currentPage < totalPages) showPage(currentPage + 1);
     });
 
     selectAll.addEventListener("change", function () {
-        const isChecked = this.checked;
-        journalFilter.checked = isChecked;
-        conferenceFilter.checked = isChecked;
+        journalFilter.checked = this.checked;
+        conferenceFilter.checked = this.checked;
         filterPublications();
     });
 
-    journalFilter.addEventListener("change", function () {
-        filterPublications();
-        selectAll.checked = journalFilter.checked && conferenceFilter.checked;
-    });
+    journalFilter.addEventListener("change", filterPublications);
+    conferenceFilter.addEventListener("change", filterPublications);
 
-    conferenceFilter.addEventListener("change", function () {
-        filterPublications();
-        selectAll.checked = journalFilter.checked && conferenceFilter.checked;
-    });
+    // Show first page on load
+    filterPublications();
 });
