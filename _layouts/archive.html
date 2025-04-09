@@ -22,7 +22,7 @@ layout: default
     <!-- Publications List with Pagination -->
     {% if paginator %}
       <ul>
-        {% for pub in paginator.posts %}
+        {% for pub in site.publications %}
           <li class="publication" data-category="{{ pub.categories | join: ' ' }}">
             <strong><a href="{{ pub.url }}">{{ pub.title }}</a></strong><br>
             <em>{{ pub.author }}</em><br>

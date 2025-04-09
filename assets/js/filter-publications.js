@@ -58,6 +58,11 @@ document.addEventListener("DOMContentLoaded", function () {
         // Update "Select All" checkbox
         selectAll.checked = showJournals && showConferences;
     }
+    
+    document.addEventListener("DOMContentLoaded", function () {
+        filterPublications();  // Ensure the filter runs after elements exist
+    });
+    
 
     // Initialize event listeners only if the elements exist
     if (prevBtn) {

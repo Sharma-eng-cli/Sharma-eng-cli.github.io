@@ -311,10 +311,10 @@ permalink: /:categories/:title/
 #   publications:
 #     output: true
 #     permalink: /publications/:title/
-pagination:
-  enabled: true
-  per_page: 10
-  collection: publications
+# pagination:
+#   enabled: true
+#   per_page: 10
+#   collection: publications
 # # Pagination (Enable for Publications)
 paginate: 10  # Number of publications per page
 paginate_path: "/publications/page:num/"
