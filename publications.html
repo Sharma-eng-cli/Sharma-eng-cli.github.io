@@ -25,12 +25,21 @@ pagination:
 </div>
 
 <!-- Publications List -->
-<div id="publications">
+<!-- <div id="publications">
   {% for post in paginator.posts %}
     <div class="publication fade" data-category="{{ post.category | downcase }}">
       {% include archive-single.html %}
     </div>
   {% endfor %}
+</div> -->
+
+<!-- Load Publications from all_publications.md -->
+{% capture publications_content %}
+  {% include_relative publications/all_publications.md %}
+{% endcapture %}
+
+<div id="publications">
+  {{ publications_content | markdownify }}
 </div>
 
 <!-- Pagination Controls -->
@@ -56,6 +65,37 @@ pagination:
     <a href="{{ paginator.next_page_path }}">Next</a>
   {% endif %}
 </div>
+
+
+<h2>Journal Papers</h2>
+<ul>
+{% for post in site.publications %}
+  {% if post.category == "manuscripts" %}
+    <li>
+      <strong><a href="{{ post.paperurl }}">{{ post.title }}</a></strong>  
+      <br> 🏛 <em>{{ post.venue }}</em>  
+      <br> 📅 {{ post.date | date: "%B %d, %Y" }}  
+      <br> 📖 Citation: {{ post.citation }}  
+      <br> 📝 {{ post.excerpt }}
+    </li>
+  {% endif %}
+{% endfor %}
+</ul>
+
+<h2>Conference Papers</h2>
+<ul>
+{% for post in site.publications %}
+  {% if post.category == "conferences" %}
+    <li>
+      <strong><a href="{{ post.paperurl }}">{{ post.title }}</a></strong>  
+      <br> 🏛 <em>{{ post.venue }}</em>  
+      <br> 📅 {{ post.date | date: "%B %d, %Y" }}  
+      <br> 📖 Citation: {{ post.citation }}  
+      <br> 📝 {{ post.excerpt }}
+    </li>
+  {% endif %}
+{% endfor %}
+</ul>
 
 <!-- Include External CSS -->
 <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css">
