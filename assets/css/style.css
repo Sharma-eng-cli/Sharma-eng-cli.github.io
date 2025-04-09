@@ -1,11 +1,13 @@
 /* Make filter options appear horizontally */
 .filter-container {
     display: flex;
-    gap: 15px;
-    margin-bottom: 15px;
+    justify-content: center; /* Center checkboxes */
     align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
     flex-wrap: wrap;
 }
+
 
 /* Style for checkbox labels */
 .filter-container label {
@@ -115,3 +117,13 @@
         align-items: flex-start;
     }
 }
+
+.main-content {
+    margin: auto;
+    max-width: 900px; /* Adjust width */
+}
+
+.sidebar, .author-profile {
+    display: block !important;
+}
+

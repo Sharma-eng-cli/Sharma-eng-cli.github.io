@@ -32,6 +32,12 @@ document.addEventListener("DOMContentLoaded", function () {
         filteredPublications.slice(startIdx, endIdx).forEach(pub => {
             pub.style.display = "block";
         });
+        if (filteredPublications.length === 0) {
+            publications.forEach(pub => pub.style.display = "none");
+            if (pageInfo) pageInfo.textContent = "No publications found.";
+            return;
+        }
+        
 
         updatePaginationControls();
     }
@@ -46,13 +52,14 @@ document.addEventListener("DOMContentLoaded", function () {
             const category = pub.getAttribute("data-category");
 
             const isJournal = category.includes("journal") || category.includes("manuscript");
-            const isConference = category.includes("conference") || category.includes("conference");
+            const isConference = category.includes("conference");
+
 
             return (
-                (!showJournals && !showConferences) ||  // If nothing is checked, show all
                 (showJournals && isJournal) ||
                 (showConferences && isConference)
             );
+            
         });
 
         // Reset to first page after filtering
@@ -87,6 +94,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (journalFilter) journalFilter.addEventListener("change", filterPublications);
     if (conferenceFilter) conferenceFilter.addEventListener("change", filterPublications);
+    selectAll.checked = journalFilter.checked && conferenceFilter.checked;
 
     // Show first page when the page loads
     filterPublications();

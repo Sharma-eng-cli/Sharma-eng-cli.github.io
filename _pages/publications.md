@@ -14,5 +14,8 @@ pagination:
     <input type="checkbox" id="journalFilter"> <label for="journalFilter">Journals</label>
     <input type="checkbox" id="conferenceFilter"> <label for="conferenceFilter">Conferences</label>
 </div>
+<div class="sidebar">
+  {% include author-profile.html %}
+</div>
 
 {% include all_publications.md %}
