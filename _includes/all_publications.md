@@ -1,18 +1,3 @@
----
-layout: archive
-title: "Publications"
-permalink: /publications/
-author_profile: true
-pagination: 
-  enabled: true
-  per_page: 10
-  collection: publications
-  categories: ["manuscripts", "conferences"]
----
-
-{% capture content %}{% include publications-content.md %}{% endcapture %}
-{{ content | markdownify }}
-
 {% raw %}
 <h2>Journal Papers</h2>
 <ul>
