@@ -233,6 +233,8 @@ collections:
   publications:
     output: true
     permalink: /publications/:path/
+  pages:
+    output: true
 
 
 
