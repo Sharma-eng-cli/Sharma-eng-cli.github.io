@@ -17,10 +17,10 @@
     transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
     margin-bottom: 10px;
 }
-
+/* 
 .hidden {
     display: none;
-}
+} */
 
 .fade-in {
     opacity: 1;

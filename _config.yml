@@ -311,8 +311,8 @@ permalink: /:categories/:title/
 #     permalink: /publications/:title/
 
 # # Pagination (Enable for Publications)
-# paginate: 10  # Number of publications per page
-# paginate_path: "/publications/page:num/"
+paginate: 10  # Number of publications per page
+paginate_path: "/publications/page:num/"
 # paginate_page : "C:/Users/dhana/Sharma-eng-cli.github.io/_publications/index.html"
 # Pagination
 # pagination:
@@ -336,7 +336,7 @@ plugins:
   - jekyll-sitemap
   - jekyll-redirect-from
   - jemoji
-  # - jekyll-paginate-v2
+  - jekyll-paginate
 
 # Mimic GitHub Pages with --safe
 whitelist:
