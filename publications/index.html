@@ -27,10 +27,10 @@ categories: ["manuscripts", "conferences"]
   <label><input type="checkbox" id="conferenceFilter" data-category="conference"> Conferences</label>
 </div>
 
-<!-- Publications List with Pagination -->
+<!-- Publications List -->
 <div id="publications">
   <ul>
-    {% for pub in paginator.publications %}
+    {% for pub in paginator.posts %}
       <li class="publication" data-category="{{ pub.categories | join: ' ' }}">
         <strong><a href="{{ pub.url }}">{{ pub.title }}</a></strong><br>
         <em>{{ pub.author }}</em><br>
@@ -43,16 +43,19 @@ categories: ["manuscripts", "conferences"]
   </ul>
 </div>
 
-<!-- Pagination Controls -->
-<div class="pagination">
-  {% if paginator.previous_page %}
-    <a href="{{ paginator.previous_page_path }}" class="prev">Previous</a>
-  {% endif %}
-  <span>Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
-  {% if paginator.next_page %}
-    <a href="{{ paginator.next_page_path }}" class="next">Next</a>
-  {% endif %}
+<!-- Pagination Controls (Bottom Left) -->
+<div class="pagination-container">
+  <div class="pagination">
+    {% if paginator.previous_page %}
+      <a href="{{ paginator.previous_page_path }}" class="prev">Previous</a>
+    {% endif %}
+    <span>Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
+    {% if paginator.next_page %}
+      <a href="{{ paginator.next_page_path }}" class="next">Next</a>
+    {% endif %}
+  </div>
 </div>
+
 
 <!-- Include all_publications.md for Extra Content -->
 {% include all_publications.md %}

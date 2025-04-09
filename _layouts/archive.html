@@ -1,7 +1,7 @@
 ---
 layout: default
 ---
-
+<h1>{{ page.title }}</h1>
 {% if page.header.overlay_color or page.header.overlay_image or page.header.image %}
   {% include page__hero.html %}
 {% endif %}
@@ -24,7 +24,7 @@ layout: default
     {% endif %}
   </div>
 {% endif %}
-{% if paginator.page %}
+<!-- {% if paginator.page %}
   <div class="pagination">
     {% if paginator.previous_page %}
       <a href="{{ paginator.previous_page_path }}" class="prev">Previous</a>
@@ -34,8 +34,36 @@ layout: default
       <a href="{{ paginator.next_page_path }}" class="next">Next</a>
     {% endif %}
   </div>
-{% endif %}
+{% endif %} -->
 
+{% if paginator %}
+  <ul>
+    {% for pub in paginator.posts %}
+      <li class="publication" data-category="{{ pub.categories | join: ' ' }}">
+        <strong><a href="{{ pub.url }}">{{ pub.title }}</a></strong><br>
+        <em>{{ pub.author }}</em><br>
+        📅 <strong>Date:</strong> {{ pub.date | date: "%B %d, %Y" }}<br>
+        🏛 <strong>Venue:</strong> {{ pub.venue }}<br>
+        📖 Citation: <em>{{ pub.citation }}</em><br>
+        📝 <em>Excerpt:</em> {{ pub.excerpt }}
+      </li>
+    {% endfor %}
+  </ul>
+  
+  <!-- Pagination Controls -->
+  <div class="pagination">
+    {% if paginator.previous_page %}
+      <a href="{{ paginator.previous_page_path }}" class="prev">Previous</a>
+    {% endif %}
+    <span>Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
+    {% if paginator.next_page %}
+      <a href="{{ paginator.next_page_path }}" class="next">Next</a>
+    {% endif %}
+  </div>
+
+{% else %}
+  <p>No publications found.</p>
+{% endif %}
 <div id="main" role="main">
   {% include sidebar.html %}
 
@@ -46,3 +74,4 @@ layout: default
     {{ content }}
   </div>
 </div>
+

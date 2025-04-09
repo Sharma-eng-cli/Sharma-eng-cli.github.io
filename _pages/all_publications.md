@@ -9,7 +9,7 @@ pagination:
   collection: publications
   categories: ["manuscripts", "conferences"]
 ---
-
+{% raw %}
 <h2>Journal Papers</h2>
 <ul>
 <li class="publication" data-category="journal">
@@ -51,3 +51,4 @@ pagination:
   📝 <em>Excerpt:</em> This research focuses on AI-driven optimization in large-scale networks.
 </li>
 </ul>
+{% endraw %}
