@@ -42,7 +42,17 @@ categories: ["manuscripts", "conferences"]
     {% endfor %}
   </ul>
 </div>
-
+<div id="publications">
+  {% if site.publications.size > 0 %}
+    {% for pub in site.publications %}
+      <div class="publication" data-category="{{ pub.category }}">
+        {{ pub.content }}
+      </div>
+    {% endfor %}
+  {% else %}
+    <p>No publications available.</p>
+  {% endif %}
+</div>
 <!-- Pagination Controls -->
 <div class="pagination">
   {% if paginator.previous_page %}
