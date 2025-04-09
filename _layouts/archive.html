@@ -19,21 +19,30 @@ layout: default
       <h1 class="page__title">{{ page.title }}</h1>
     {% endunless %}
 
+    <!-- Publications Filters (Include same filters as in publications.html) -->
+    <div id="publication-filters">
+      <label><input type="checkbox" value="journal" checked> Journals</label>
+      <label><input type="checkbox" value="conference" checked> Conferences</label>
+      <label><input type="checkbox" value="manuscripts" checked> Manuscripts</label>
+    </div>
+
     <!-- Publications List with Pagination -->
-    {% if paginator %}
-      <ul>
-        {% for pub in site.publications %}
-          <li class="publication" data-category="{{ pub.categories | join: ' ' }}">
-            <strong><a href="{{ pub.url }}">{{ pub.title }}</a></strong><br>
-            <em>{{ pub.author }}</em><br>
-            📅 <strong>Date:</strong> {{ pub.date | date: "%B %d, %Y" }}<br>
-            🏛 <strong>Venue:</strong> {{ pub.venue }}<br>
-            📖 Citation: <em>{{ pub.citation }}</em><br>
-                {% unless pub.excerpt == empty %}
-            📝 <em>Excerpt:</em> {{ pub.excerpt }}
-                {% endunless %}
-          
-          </li>
+    {% if paginator.posts %}
+      <ul id="publications-list">
+        {% for pub in paginator.posts %}
+          {% if pub.categories contains "conferences" or pub.categories contains "manuscripts" %}
+            <li class="publication" 
+                data-category="{{ pub.categories | join: ' ' }}">
+              <strong><a href="{{ pub.url }}">{{ pub.title }}</a></strong><br>
+              <em>{{ pub.author }}</em><br>
+              📅 <strong>Date:</strong> {{ pub.date | date: "%B %d, %Y" }}<br>
+              🏛 <strong>Venue:</strong> {{ pub.venue }}<br>
+              📖 Citation: <em>{{ pub.citation }}</em><br>
+              {% unless pub.excerpt == empty %}
+                📝 <em>Excerpt:</em> {{ pub.excerpt }}
+              {% endunless %}
+            </li>
+          {% endif %}
         {% endfor %}
       </ul>
 
@@ -51,6 +60,11 @@ layout: default
     {% else %}
       <p>No publications found.</p>
     {% endif %}
+  </div>
+</div>
+
+<!-- Include filtering-publications.js for proper filtering -->
+<script src="{{ '/assets/js/filtering-publications.js' | relative_url }}"></script>
 
     <!-- Main Content -->
     {{ content }}
