@@ -15,6 +15,4 @@ pagination:
     <input type="checkbox" id="conferenceFilter"> <label for="conferenceFilter">Conferences</label>
 </div>
 
-{% include all-publications.md %}
-
 {% include all_publications.md %}
