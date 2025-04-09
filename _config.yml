@@ -230,6 +230,10 @@ collections:
   publications:
     output: true
     permalink: /publications/:title/
+  publications:
+    output: true
+    permalink: /publications/:path/
+
 
 
 # These settings control how pages and collections are included in the site
