@@ -14,10 +14,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function updatePaginationControls() {
         const totalPages = Math.ceil(filteredPublications.length / itemsPerPage);
-        pageInfo.textContent = `Page ${currentPage} of ${totalPages || 1}`;
+        if (pageInfo) {
+            pageInfo.textContent = `Page ${currentPage} of ${totalPages || 1}`;
+        }
 
-        prevBtn.disabled = (currentPage === 1);
-        nextBtn.disabled = (currentPage >= totalPages || totalPages === 0);
+        if (prevBtn) prevBtn.disabled = (currentPage === 1);
+        if (nextBtn) nextBtn.disabled = (currentPage >= totalPages || totalPages === 0);
     }
 
     function showPage(page) {
@@ -35,6 +37,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function filterPublications() {
+        if (!journalFilter || !conferenceFilter || !selectAll) return;
+
         const showJournals = journalFilter.checked;
         const showConferences = conferenceFilter.checked;
 
@@ -55,24 +59,30 @@ document.addEventListener("DOMContentLoaded", function () {
         selectAll.checked = showJournals && showConferences;
     }
 
-    // Initialize event listeners
-    prevBtn.addEventListener("click", function () {
-        if (currentPage > 1) showPage(currentPage - 1);
-    });
+    // Initialize event listeners only if the elements exist
+    if (prevBtn) {
+        prevBtn.addEventListener("click", function () {
+            if (currentPage > 1) showPage(currentPage - 1);
+        });
+    }
 
-    nextBtn.addEventListener("click", function () {
-        const totalPages = Math.ceil(filteredPublications.length / itemsPerPage);
-        if (currentPage < totalPages) showPage(currentPage + 1);
-    });
+    if (nextBtn) {
+        nextBtn.addEventListener("click", function () {
+            const totalPages = Math.ceil(filteredPublications.length / itemsPerPage);
+            if (currentPage < totalPages) showPage(currentPage + 1);
+        });
+    }
 
-    selectAll.addEventListener("change", function () {
-        journalFilter.checked = this.checked;
-        conferenceFilter.checked = this.checked;
-        filterPublications();
-    });
+    if (selectAll) {
+        selectAll.addEventListener("change", function () {
+            if (journalFilter) journalFilter.checked = this.checked;
+            if (conferenceFilter) conferenceFilter.checked = this.checked;
+            filterPublications();
+        });
+    }
 
-    journalFilter.addEventListener("change", filterPublications);
-    conferenceFilter.addEventListener("change", filterPublications);
+    if (journalFilter) journalFilter.addEventListener("change", filterPublications);
+    if (conferenceFilter) conferenceFilter.addEventListener("change", filterPublications);
 
     // Show first page when the page loads
     filterPublications();

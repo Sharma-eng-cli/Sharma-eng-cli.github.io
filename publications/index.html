@@ -30,7 +30,7 @@ categories: ["manuscripts", "conferences"]
 <!-- Publications List with Pagination -->
 <div id="publications">
   <ul>
-    {% for pub in paginator.posts %}
+    {% for pub in paginator.publications %}
       <li class="publication" data-category="{{ pub.categories | join: ' ' }}">
         <strong><a href="{{ pub.url }}">{{ pub.title }}</a></strong><br>
         <em>{{ pub.author }}</em><br>
@@ -42,17 +42,7 @@ categories: ["manuscripts", "conferences"]
     {% endfor %}
   </ul>
 </div>
-<div id="publications">
-  {% if site.publications.size > 0 %}
-    {% for pub in site.publications %}
-      <div class="publication" data-category="{{ pub.category }}">
-        {{ pub.content }}
-      </div>
-    {% endfor %}
-  {% else %}
-    <p>No publications available.</p>
-  {% endif %}
-</div>
+
 <!-- Pagination Controls -->
 <div class="pagination">
   {% if paginator.previous_page %}
@@ -63,6 +53,9 @@ categories: ["manuscripts", "conferences"]
     <a href="{{ paginator.next_page_path }}" class="next">Next</a>
   {% endif %}
 </div>
+
+<!-- Include all_publications.md for Extra Content -->
+{% include all_publications.md %}
 
 <!-- Include JavaScript for Filtering and Pagination -->
 <script src="{{ site.baseurl }}/assets/js/filter-publications.js"></script>

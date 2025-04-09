@@ -5,6 +5,26 @@ document.addEventListener("DOMContentLoaded", function () {
     let currentPage = 1;
     const totalPages = Math.ceil(allPublications.length / itemsPerPage);
 
+    document.addEventListener("DOMContentLoaded", function () {
+        let prevButton = document.querySelector(".prev");
+        let nextButton = document.querySelector(".next");
+      
+        if (prevButton) {
+          prevButton.addEventListener("click", function (event) {
+            event.preventDefault();
+            window.location.href = prevButton.href;
+          });
+        }
+      
+        if (nextButton) {
+          nextButton.addEventListener("click", function (event) {
+            event.preventDefault();
+            window.location.href = nextButton.href;
+          });
+        }
+      });
+      
+
     function showPage(page) {
         // Hide all publications first
         allPublications.forEach(pub => pub.style.display = "none");
