@@ -78,5 +78,32 @@
     gap: 15px; /* Adds spacing between checkboxes */
     padding: 10px;
 }
+.pagination-container {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.pagination {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.pagination a {
+    text-decoration: none;
+    background: #007bff;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.pagination a:hover {
+    background: #0056b3;
+}
 
   
