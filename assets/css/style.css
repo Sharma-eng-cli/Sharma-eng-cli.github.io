@@ -7,9 +7,20 @@
     flex-wrap: wrap;
 }
 
+/* Style for checkbox labels */
 .filter-container label {
     cursor: pointer;
     font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Adds space between checkbox and text */
+}
+
+/* Increase checkbox size for better usability */
+.filter-container input[type="checkbox"] {
+    transform: scale(1.5); /* Increases the checkbox size */
+    margin-right: 8px;
+    cursor: pointer;
 }
 
 /* Smooth fade-in/out animation */
@@ -19,11 +30,13 @@
     display: block;
     clear: both;
 }
-/* 
+
+/* Ensure filtered items disappear properly */
 .hidden {
     display: none;
-} */
+}
 
+/* Fade-in effect for better UX */
 .fade-in {
     opacity: 1;
     transform: translateY(0);
@@ -33,50 +46,72 @@
     opacity: 0;
     transform: translateY(-10px);
 }
-/* Make checkboxes bigger and more appealing */
-.filter-container input[type="checkbox"] {
-    transform: scale(1.5); /* Increases the checkbox size */
-    margin-right: 8px; /* Adds spacing between checkbox and label */
-    cursor: pointer;
+
+/* Improve pagination button styles */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    gap: 10px;
 }
 
-/* Style the labels to improve readability */
-.filter-container label {
-    font-size: 18px;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    gap: 5px; /* Adds space between checkbox and text */
+.pagination a {
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease-in-out;
 }
+
+.pagination a:hover {
+    background-color: #0056b3;
+}
+
+.pagination .prev, .pagination .next {
+    font-weight: bold;
+}
+
+.pagination span {
+    font-size: 16px;
+    font-weight: 500;
+}
+
 /* Make category titles more elegant */
-/* Default category title styling */
 .category-title {
-    font-size: 22px; /* Standard size for larger screens */
-    font-weight: 500; /* Less bold */
-    color: #444; /* Softer color */
+    font-size: 22px;
+    font-weight: 500;
+    color: #444;
     margin-bottom: 10px;
-    text-align: center; /* Center align for better readability */
+    text-align: center;
 }
 
 /* Adjust category titles for mobile screens */
 @media (max-width: 768px) {
     .category-title {
-        font-size: 18px; /* Slightly smaller for mobile */
-        margin-bottom: 8px; /* Adjust spacing */
+        font-size: 18px;
+        margin-bottom: 8px;
     }
 }
 
 @media (max-width: 480px) {
     .category-title {
-        font-size: 16px; /* Even smaller for very small screens */
+        font-size: 16px;
         margin-bottom: 6px;
     }
 }
 
+/* Ensure archive publications are neatly displayed */
 .archive .publication {
     clear: both;
     margin-bottom: 10px;
 }
 
-
-  
+/* Make sure filters are properly spaced on mobile */
+@media (max-width: 768px) {
+    .filter-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
