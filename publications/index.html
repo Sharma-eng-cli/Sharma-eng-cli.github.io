@@ -62,11 +62,11 @@ categories: ["manuscripts", "conferences"]
 {% if all_publications %}
   {{ all_publications.content | markdownify }}
 {% endif %} -->
-
+<!-- 
 {% assign all_publications = site.pages | where: "title", "Publications" | first %}
 {% if all_publications %}
   {{ all_publications.content | markdownify }}
-{% endif %}
+{% endif %} -->
 
 <!-- {% for pub in site.pages %}
   {% if pub.layout == "publication" %}
@@ -77,7 +77,8 @@ categories: ["manuscripts", "conferences"]
 {% endfor %} -->
 
 
-<!-- {% include all_publications.md %} If all_publications.md is inside _includes/, you must include it using: -->
+{% include all_publications.md %} 
+ <!-- If all_publications.md is inside _includes/, you must include it using: -->
 
 
 
