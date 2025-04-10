@@ -15,14 +15,16 @@ layout: default
     {% if paginator %}
       <ul id="publications-list">
         {% for pub in paginator.posts %}
-          <li class="publication" data-category="{{ pub.categories | join: ' ' }}">
+        {% if pub.categories contains "conferences" or pub.categories contains "manuscripts" %}
+          <li class="publication">
             <strong><a href="{{ pub.url }}">{{ pub.title }}</a></strong><br>
             <em>{{ pub.author }}</em><br>
             📅 <strong>Date:</strong> {{ pub.date | date: "%B %d, %Y" }}<br>
             🏛 <strong>Venue:</strong> {{ pub.venue }}<br>
-            📖 <strong>Citation:</strong> <em>{{ pub.citation }}</em>
           </li>
-        {% endfor %}
+        {% endif %}
+      {% endfor %}
+      
       </ul>
 
       <!-- Pagination Controls -->

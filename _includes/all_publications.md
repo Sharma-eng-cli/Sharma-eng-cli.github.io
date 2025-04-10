@@ -1,7 +1,7 @@
 {% raw %}
 <h2>Journal Papers</h2>
 <ul>
-<li class="publication" data-category="manuscript">
+<li class="publication" data-category="journal">
   <strong><a href="http://academicpages.github.io/files/paper1.pdf">Paper Title Number 1</a></strong><br>
   <em>Your Name, You</em><br>
   📅 <strong>Date:</strong> October 1, 2009 <br>
@@ -10,7 +10,7 @@
   📝 <em>Excerpt:</em> This paper is about the number 1. The number 2 is left for future work.<!--more--> 
 </li>
 
-<li class="publication" data-category="manuscript">
+<li class="publication" data-category="journal">
   <strong><a href="http://academicpages.github.io/files/paper2.pdf">Paper Title Number 2</a></strong><br>
   <em>Your Name, You</em><br>
   📅 <strong>Date:</strong> October 1, 2010 <br>
