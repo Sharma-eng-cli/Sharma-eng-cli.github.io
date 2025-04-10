@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     const checkboxes = document.querySelectorAll(".filter-container input[type='checkbox']");
     const selectAll = document.getElementById("selectAll");
-    const publications = Array.from(document.querySelectorAll(".publication"));
+    const publications = Array.from(document.querySelectorAll("#publications-list .publication"));
 
     const prevBtn = document.getElementById("prevPage");
     const nextBtn = document.getElementById("nextPage");

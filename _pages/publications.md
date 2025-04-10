@@ -30,6 +30,7 @@ pagination:
   {% endfor %}
 </ul>
 
+
 {% capture publications_content %}
 {% include all_publications.md %}
 {% endcapture %}
