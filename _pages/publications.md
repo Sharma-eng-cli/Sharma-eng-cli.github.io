@@ -7,6 +7,7 @@ pagination:
   enabled: true
   per_page: 10
   collection: publications
+  categories: ["manuscripts", "conferences"]
 ---
 
 
