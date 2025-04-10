@@ -16,7 +16,7 @@ pagination:
 </div>
 
 {% capture publications_content %}
-{% include all-publications.md %}
+{% include all_ublications.md %}
 {% endcapture %}
 
 {{ publications_content | markdownify }}
