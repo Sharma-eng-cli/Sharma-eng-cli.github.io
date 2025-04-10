@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (pageInfo) {
             pageInfo.textContent = totalPages === 0 ? "No publications found." : `Page ${currentPage} of ${totalPages}`;
+            pageInfo.style.display = totalPages === 0 ? "block" : "block";  // Ensure visibility
         }
 
         if (prevBtn) prevBtn.disabled = (currentPage === 1 || totalPages === 0);
@@ -25,53 +26,38 @@ document.addEventListener("DOMContentLoaded", function () {
     function showPage(page) {
         currentPage = page;
         publications.forEach(pub => pub.style.display = "none");
-    
+
+        const totalPages = Math.ceil(filteredPublications.length / itemsPerPage);
+        if (currentPage > totalPages && totalPages > 0) {
+            currentPage = 1; // Reset to first page if filtering reduces available pages
+        }
+
         const startIdx = (currentPage - 1) * itemsPerPage;
         const endIdx = startIdx + itemsPerPage;
-    
-        // Show the filtered publications
-        if (filteredPublications.length === 0) {
-            if (pageInfo) pageInfo.style.display = "none"; // Hide the message
-            updatePaginationControls();
-            return;
-        } else {
-            if (pageInfo) pageInfo.style.display = "block"; // Show if needed
-        }
-    
+
         filteredPublications.slice(startIdx, endIdx).forEach(pub => pub.style.display = "block");
-    
+
         updatePaginationControls();
     }
-    
 
     function filterPublications() {
-        let selectedCategories = [];
-
-        checkboxes.forEach(checkbox => {
-            if (checkbox.checked && checkbox.id !== "selectAll") {
-                selectedCategories.push(checkbox.getAttribute("data-category"));
-            }
-        });
+        let selectedCategories = Array.from(checkboxes)
+            .filter(checkbox => checkbox.checked && checkbox.id !== "selectAll")
+            .map(checkbox => checkbox.getAttribute("data-category"));
 
         filteredPublications = publications.filter(pub => {
             const pubCategories = pub.getAttribute("data-category").split(" ");
             return selectedCategories.length === 0 || selectedCategories.some(cat => pubCategories.includes(cat));
         });
 
-        // If no specific filters are selected, reset to show all
-        if (selectedCategories.length === 0) {
-            filteredPublications = [...publications];
-        }
-
-        // Update "Select All" checkbox dynamically
-        selectAll.checked = selectedCategories.length === checkboxes.length - 1;
+        // Automatically check/uncheck "Select All"
+        const allChecked = checkboxes.length - 1 === selectedCategories.length;
+        selectAll.checked = allChecked;
 
         // Reset to first page after filtering
-        currentPage = 1;
-        showPage(currentPage);
+        showPage(1);
     }
 
-    // Pagination Controls
     if (prevBtn) {
         prevBtn.addEventListener("click", function () {
             if (currentPage > 1) showPage(currentPage - 1);
@@ -85,21 +71,16 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Select All Logic
     if (selectAll) {
         selectAll.addEventListener("change", function () {
-            checkboxes.forEach(checkbox => {
-                checkbox.checked = selectAll.checked;
-            });
+            checkboxes.forEach(checkbox => (checkbox.checked = selectAll.checked));
             filterPublications();
         });
     }
 
-    // Attach event listeners to all checkboxes dynamically
     checkboxes.forEach(checkbox => {
         checkbox.addEventListener("change", filterPublications);
     });
 
-    // Apply filter and pagination on load
     filterPublications();
 });
