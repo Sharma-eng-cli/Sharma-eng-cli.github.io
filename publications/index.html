@@ -22,7 +22,7 @@ categories: ["manuscripts", "conferences"]
 <!-- Filtering Section -->
 <div class="filter-container">
   <label><input type="checkbox" id="selectAll"> Select All</label>
-  <label><input type="checkbox" id="journalFilter" data-category="journal"> Journals</label>
+  <label><input type="checkbox" id="journalFilter" data-category="manuscript"> Journals</label>
   <label><input type="checkbox" id="conferenceFilter" data-category="conference"> Conferences</label>
 </div>
 
@@ -54,7 +54,7 @@ categories: ["manuscripts", "conferences"]
     {% endif %}
   </div>
 </div>
-
+{% include all_publications.md %}
 <!-- Include JavaScript -->
 <script src="{{ site.baseurl }}/assets/js/filter-publications.js"></script>
 <script src="{{ site.baseurl }}/assets/js/paginate-publications.js"></script>
