@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: archive
 title: "Publications"
 permalink: /publications/
 author_profile: true
@@ -10,19 +10,12 @@ pagination:
   categories: ["manuscripts", "conferences"]
 ---
 
-<div class="main-content">
-    <!-- Author Profile (on the left) -->
-    {% if page.author_profile %}
-        <div class="author-profile">
-            {% include author-profile.html %}
-        </div>
-    {% endif %}
 
-<div class="filter-container">
+<!-- <div class="filter-container">
     <input type="checkbox" id="selectAll"> <label for="selectAll">Select All</label>
     <input type="checkbox" id="journalFilter"> <label for="journalFilter">Journals</label>
     <input type="checkbox" id="conferenceFilter"> <label for="conferenceFilter">Conferences</label>
-</div>
+</div> -->
 
 {% capture publications_content %}
 {% include all_publications.md %}
