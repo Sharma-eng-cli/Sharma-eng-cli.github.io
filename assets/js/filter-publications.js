@@ -25,20 +25,24 @@ document.addEventListener("DOMContentLoaded", function () {
     function showPage(page) {
         currentPage = page;
         publications.forEach(pub => pub.style.display = "none");
-
+    
         const startIdx = (currentPage - 1) * itemsPerPage;
         const endIdx = startIdx + itemsPerPage;
-
+    
+        // Show the filtered publications
         if (filteredPublications.length === 0) {
-            pageInfo.textContent = "No publications found.";
+            if (pageInfo) pageInfo.style.display = "none"; // Hide the message
             updatePaginationControls();
             return;
+        } else {
+            if (pageInfo) pageInfo.style.display = "block"; // Show if needed
         }
-
+    
         filteredPublications.slice(startIdx, endIdx).forEach(pub => pub.style.display = "block");
-
+    
         updatePaginationControls();
     }
+    
 
     function filterPublications() {
         let selectedCategories = [];
