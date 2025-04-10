@@ -16,10 +16,11 @@ pagination:
 </div>
 
 {% capture publications_content %}
-{% include all_ublications.md %}
+{% include all_publications.md %}
 {% endcapture %}
 
 {{ publications_content | markdownify }}
+
 
 
 <!-- {% include all_publications.html %} -->
