@@ -9,6 +9,15 @@ pagination:
   collection: publications
   categories: ["manuscripts", "conferences"]
 ---
+
+<div class="main-content">
+    <!-- Author Profile (on the left) -->
+    {% if page.author_profile %}
+        <div class="author-profile">
+            {% include author-profile.html %}
+        </div>
+    {% endif %}
+
 <div class="filter-container">
     <input type="checkbox" id="selectAll"> <label for="selectAll">Select All</label>
     <input type="checkbox" id="journalFilter"> <label for="journalFilter">Journals</label>
