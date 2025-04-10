@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (pageInfo) {
             pageInfo.textContent = totalPages === 0 ? "No publications found." : `Page ${currentPage} of ${totalPages}`;
-            pageInfo.style.display = totalPages === 0 ? "block" : "block";  // Ensure visibility
+            pageInfo.style.display = totalPages === 0 ? "block" : "block"; // Ensure visibility
         }
 
         if (prevBtn) prevBtn.disabled = (currentPage === 1 || totalPages === 0);
@@ -25,7 +25,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function showPage(page) {
         currentPage = page;
-        publications.forEach(pub => pub.style.display = "none");
 
         const totalPages = Math.ceil(filteredPublications.length / itemsPerPage);
         if (currentPage > totalPages && totalPages > 0) {
@@ -35,6 +34,10 @@ document.addEventListener("DOMContentLoaded", function () {
         const startIdx = (currentPage - 1) * itemsPerPage;
         const endIdx = startIdx + itemsPerPage;
 
+        // Hide all publications first
+        publications.forEach(pub => pub.style.display = "none");
+
+        // Show only the filtered ones
         filteredPublications.slice(startIdx, endIdx).forEach(pub => pub.style.display = "block");
 
         updatePaginationControls();
@@ -46,18 +49,28 @@ document.addEventListener("DOMContentLoaded", function () {
             .map(checkbox => checkbox.getAttribute("data-category"));
 
         filteredPublications = publications.filter(pub => {
-            const pubCategories = pub.getAttribute("data-category").split(" ");
-            return selectedCategories.length === 0 || selectedCategories.some(cat => pubCategories.includes(cat));
+            const pubCategory = pub.getAttribute("data-category"); // Ensure attribute exists
+            return selectedCategories.length === 0 || selectedCategories.includes(pubCategory);
         });
 
-        // Automatically check/uncheck "Select All"
+        // Ensure filtered content is always shown properly
+        publications.forEach(pub => {
+            pub.style.display = "none"; // Hide everything first
+        });
+
+        filteredPublications.forEach(pub => {
+            pub.style.display = "block"; // Show filtered ones
+        });
+
+        // Update "Select All" checkbox dynamically
         const allChecked = checkboxes.length - 1 === selectedCategories.length;
         selectAll.checked = allChecked;
 
-        // Reset to first page after filtering
+        // Reset pagination after filtering
         showPage(1);
     }
 
+    // Pagination Controls
     if (prevBtn) {
         prevBtn.addEventListener("click", function () {
             if (currentPage > 1) showPage(currentPage - 1);
@@ -71,6 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    // Select All Logic
     if (selectAll) {
         selectAll.addEventListener("change", function () {
             checkboxes.forEach(checkbox => (checkbox.checked = selectAll.checked));
@@ -82,5 +96,6 @@ document.addEventListener("DOMContentLoaded", function () {
         checkbox.addEventListener("change", filterPublications);
     });
 
+    // Apply filter and pagination on load
     filterPublications();
 });
