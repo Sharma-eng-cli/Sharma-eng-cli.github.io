@@ -1,4 +1,4 @@
-{% include pub-filter.md %}
+
 {% raw %}
 <h2>Journal Papers</h2>
 <ul>

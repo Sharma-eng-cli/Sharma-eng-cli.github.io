@@ -16,6 +16,11 @@ pagination:
   <label><input type="checkbox" id="conference" data-category="conference"> Conferences</label>
 </div>
 
+{% capture publications_content %}
+{% include pub-filter.md %}
+{% endcapture %}
+
+{{ publications_content | markdownify }}
 
 {% capture publications_content %}
 {% include all_publications.md %}
