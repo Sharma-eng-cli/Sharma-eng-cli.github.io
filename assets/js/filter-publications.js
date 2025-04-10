@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const journalFilter = document.getElementById("journalFilter");
-    const conferenceFilter = document.getElementById("conferenceFilter");
+    const checkboxes = document.querySelectorAll(".filter-container input[type='checkbox']");
     const selectAll = document.getElementById("selectAll");
     const publications = Array.from(document.querySelectorAll(".publication"));
 
@@ -42,34 +41,33 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function filterPublications() {
-        if (!journalFilter || !conferenceFilter || !selectAll) return;
+        let selectedCategories = [];
 
-        const showJournals = journalFilter.checked;
-        const showConferences = conferenceFilter.checked;
-
-        filteredPublications = publications.filter(pub => {
-            const category = pub.getAttribute("data-category");
-
-            const isJournal = category.includes("journal") || category.includes("manuscript");
-            const isConference = category.includes("conference");
-
-            return (showJournals && isJournal) || (showConferences && isConference);
+        checkboxes.forEach(checkbox => {
+            if (checkbox.checked && checkbox.id !== "selectAll") {
+                selectedCategories.push(checkbox.getAttribute("data-category"));
+            }
         });
 
-        // If nothing is selected, show all publications
-        if (!showJournals && !showConferences) {
+        filteredPublications = publications.filter(pub => {
+            const pubCategories = pub.getAttribute("data-category").split(" ");
+            return selectedCategories.length === 0 || selectedCategories.some(cat => pubCategories.includes(cat));
+        });
+
+        // If no specific filters are selected, reset to show all
+        if (selectedCategories.length === 0) {
             filteredPublications = [...publications];
         }
 
         // Update "Select All" checkbox dynamically
-        selectAll.checked = showJournals && showConferences;
+        selectAll.checked = selectedCategories.length === checkboxes.length - 1;
 
         // Reset to first page after filtering
         currentPage = 1;
         showPage(currentPage);
     }
 
-    // Event Listeners
+    // Pagination Controls
     if (prevBtn) {
         prevBtn.addEventListener("click", function () {
             if (currentPage > 1) showPage(currentPage - 1);
@@ -83,16 +81,20 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    // Select All Logic
     if (selectAll) {
         selectAll.addEventListener("change", function () {
-            journalFilter.checked = this.checked;
-            conferenceFilter.checked = this.checked;
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = selectAll.checked;
+            });
             filterPublications();
         });
     }
 
-    if (journalFilter) journalFilter.addEventListener("change", filterPublications);
-    if (conferenceFilter) conferenceFilter.addEventListener("change", filterPublications);
+    // Attach event listeners to all checkboxes dynamically
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener("change", filterPublications);
+    });
 
     // Apply filter and pagination on load
     filterPublications();
