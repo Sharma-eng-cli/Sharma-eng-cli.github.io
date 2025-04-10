@@ -1,60 +1,67 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const publicationsContainer = document.getElementById("publications");
-    const allPublications = Array.from(publicationsContainer.children);
-    const itemsPerPage = 5; // Adjust as needed
-    let currentPage = 1;
-    const totalPages = Math.ceil(allPublications.length / itemsPerPage);
+  const publicationsContainer = document.getElementById("publications");
+  if (!publicationsContainer) return; // Exit if the container is missing
 
-    document.addEventListener("DOMContentLoaded", function () {
-        let prevButton = document.querySelector(".prev");
-        let nextButton = document.querySelector(".next");
+  const allPublications = Array.from(publicationsContainer.querySelectorAll(".publication"));
+  const itemsPerPage = 10; // Set items per page
+  let currentPage = 1;
+  let filteredPublications = [...allPublications]; // Store filtered publications
+
+  const prevPage = document.getElementById("prevPage");
+  const nextPage = document.getElementById("nextPage");
+  const pageInfo = document.getElementById("page-info");
+
+  if (!prevPage || !nextPage || !pageInfo) return; // Stop execution if pagination controls are missing
+
+  function updatePaginationControls() {
+      const totalPages = Math.ceil(filteredPublications.length / itemsPerPage);
       
-        if (prevButton) {
-          prevButton.addEventListener("click", function (event) {
-            event.preventDefault();
-            window.location.href = prevButton.href;
-          });
-        }
-      
-        if (nextButton) {
-          nextButton.addEventListener("click", function (event) {
-            event.preventDefault();
-            window.location.href = nextButton.href;
-          });
-        }
-      });
-      
+      if (filteredPublications.length === 0) {
+          pageInfo.textContent = "No publications available.";
+          prevPage.style.display = "none";
+          nextPage.style.display = "none";
+      } else {
+          pageInfo.textContent = `Page ${currentPage} of ${totalPages || 1}`;
+          prevPage.style.display = "inline-block";
+          nextPage.style.display = "inline-block";
 
-    function showPage(page) {
-        // Hide all publications first
-        allPublications.forEach(pub => pub.style.display = "none");
+          prevPage.disabled = (currentPage === 1);
+          nextPage.disabled = (currentPage >= totalPages || totalPages === 0);
+      }
+  }
 
-        // Show only the current page's publications
-        const start = (page - 1) * itemsPerPage;
-        const end = start + itemsPerPage;
-        allPublications.slice(start, end).forEach(pub => pub.style.display = "block");
+  function showPage(page) {
+      const totalPages = Math.ceil(filteredPublications.length / itemsPerPage);
 
-        // Update pagination controls
-        document.getElementById("page-info").textContent = `Page ${page} of ${totalPages}`;
-        document.getElementById("prevPage").disabled = (page === 1);
-        document.getElementById("nextPage").disabled = (page === totalPages);
-    }
+      if (filteredPublications.length === 0) {
+          allPublications.forEach(pub => pub.style.display = "none");
+          updatePaginationControls();
+          return;
+      }
 
-    // Pagination button events
-    document.getElementById("prevPage").addEventListener("click", function () {
-        if (currentPage > 1) {
-            currentPage--;
-            showPage(currentPage);
-        }
-    });
+      currentPage = Math.max(1, Math.min(page, totalPages));
 
-    document.getElementById("nextPage").addEventListener("click", function () {
-        if (currentPage < totalPages) {
-            currentPage++;
-            showPage(currentPage);
-        }
-    });
+      allPublications.forEach(pub => pub.style.display = "none");
+      const start = (currentPage - 1) * itemsPerPage;
+      const end = start + itemsPerPage;
+      filteredPublications.slice(start, end).forEach(pub => pub.style.display = "block");
 
-    // Show the first page on load
-    showPage(currentPage);
+      updatePaginationControls();
+  }
+
+  prevPage.addEventListener("click", function () {
+      if (currentPage > 1) {
+          showPage(currentPage - 1);
+      }
+  });
+
+  nextPage.addEventListener("click", function () {
+      const totalPages = Math.ceil(filteredPublications.length / itemsPerPage);
+      if (currentPage < totalPages) {
+          showPage(currentPage + 1);
+      }
+  });
+
+  // Show the first page on load
+  showPage(currentPage);
 });

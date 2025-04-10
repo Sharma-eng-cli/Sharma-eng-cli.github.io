@@ -2,44 +2,30 @@
 layout: default
 ---
 
-{% if page.header.overlay_color or page.header.overlay_image or page.header.image %}
+{% if page.header.overlay_color or page.header.overlay_image %}
   {% include page__hero.html %}
-{% endif %}
-
-{% if page.url != "/" and site.breadcrumbs %}
-  {% unless paginator %}
-    {% include breadcrumbs.html %}
-  {% endunless %}
 {% endif %}
 
 <div id="main" role="main">
   <div class="archive">
     
-    {% unless page.header.overlay_color or page.header.overlay_image %}
-      <h1 class="page__title">{{ page.title }}</h1>
-    {% endunless %}
+    <h1 class="page__title">{{ page.title }}</h1>
 
     <!-- Publications List with Pagination -->
     {% if paginator %}
       <ul id="publications-list">
         {% for pub in paginator.posts %}
-          {% assign categories = pub.categories | join: ' ' %}
-          {% if categories contains "conferences" or categories contains "manuscripts" %}
-            <li class="publication" data-category="{{ categories }}">
-              <strong><a href="{{ pub.url }}">{{ pub.title }}</a></strong><br>
-              <em>{{ pub.author }}</em><br>
-              📅 <strong>Date:</strong> {{ pub.date | date: "%B %d, %Y" }}<br>
-              🏛 <strong>Venue:</strong> {{ pub.venue }}<br>
-              📖 Citation: <em>{{ pub.citation }}</em><br>
-              {% if pub.excerpt != empty %}
-                📝 <em>Excerpt:</em> {{ pub.excerpt }}
-              {% endif %}
-            </li>
-          {% endif %}
+          <li class="publication" data-category="{{ pub.categories | join: ' ' }}">
+            <strong><a href="{{ pub.url }}">{{ pub.title }}</a></strong><br>
+            <em>{{ pub.author }}</em><br>
+            📅 <strong>Date:</strong> {{ pub.date | date: "%B %d, %Y" }}<br>
+            🏛 <strong>Venue:</strong> {{ pub.venue }}<br>
+            📖 <strong>Citation:</strong> <em>{{ pub.citation }}</em>
+          </li>
         {% endfor %}
       </ul>
 
-      <!-- Pagination Controls (Fixed Placement) -->
+      <!-- Pagination Controls -->
       <div class="pagination">
         {% if paginator.previous_page %}
           <a href="{{ paginator.previous_page_path }}" class="prev">Previous</a>
@@ -49,19 +35,13 @@ layout: default
           <a href="{{ paginator.next_page_path }}" class="next">Next</a>
         {% endif %}
       </div>
-
     {% else %}
-      <p id="no-publications">No publications found.</p>
+      <p>No publications found.</p>
     {% endif %}
 
-    <!-- Ensure Filtering Script Works -->
-    <script src="{{ '/assets/js/filtering-publications.js' | relative_url }}"></script>
-
-    <!-- Main Content -->
     {{ content }}
+  </div> 
 
-  </div> <!-- End of archive div -->
-
-  <!-- Sidebar (Correct Placement) -->
+  <!-- Sidebar with Author Profile Links -->
   {% include sidebar.html %}
 </div>

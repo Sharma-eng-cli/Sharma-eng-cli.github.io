@@ -7,8 +7,8 @@ group :jekyll_plugins do
   gem 'jekyll-redirect-from'
   gem 'jemoji'
   gem 'webrick', '~> 1.8'
-  # gem 'faraday-retry'
-  gem 'jekyll-paginate'
+  gem 'faraday-retry'
+  gem 'jekyll-paginate-v2'
 
 end
 

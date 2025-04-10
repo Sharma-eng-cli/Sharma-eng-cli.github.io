@@ -311,13 +311,21 @@ permalink: /:categories/:title/
 #   publications:
 #     output: true
 #     permalink: /publications/:title/
-# pagination:
-#   enabled: true
-#   per_page: 10
-#   collection: publications
+
+
+pagination:
+  enabled: true
+  per_page: 10
+  collection: publications
+  permalink: "/publications/page:num/"
+  sort_field: "date"
+  sort_reverse: true  # Ensures latest publications appear first
+
+
+
 # # Pagination (Enable for Publications)
-paginate: 10  # Number of publications per page
-paginate_path: "/publications/page:num/"
+# paginate: 10  # Number of publications per page
+# paginate_path: "/publications/page:num/"
 
 
 # paginate_page : "C:/Users/dhana/Sharma-eng-cli.github.io/_publications/index.html"
@@ -343,7 +351,7 @@ plugins:
   - jekyll-sitemap
   - jekyll-redirect-from
   - jemoji
-  - jekyll-paginate
+  - jekyll-paginate-v2
 
 # Mimic GitHub Pages with --safe
 whitelist:
