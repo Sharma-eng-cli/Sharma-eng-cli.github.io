@@ -1,4 +1,16 @@
 {% raw %}
+<ul id="publications-list">
+  {% for pub in site.publications %}
+    {% assign categories = pub.categories | join: ' ' %}
+    <li class="publication" data-category="{{ categories }}">
+      <strong><a href="{{ pub.url }}">{{ pub.title }}</a></strong><br>
+      <em>{{ pub.author }}</em><br>
+      📅 <strong>Date:</strong> {{ pub.date | date: "%B %d, %Y" }}<br>
+      🏛 <strong>Venue:</strong> {{ pub.venue }}<br>
+    </li>
+  {% endfor %}
+</ul>
+
 <h2>Journal Papers</h2>
 <ul>
 <li class="publication" data-category="journal">

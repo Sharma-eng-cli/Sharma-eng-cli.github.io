@@ -1,13 +1,11 @@
-
-/* Centering filter checkboxes */
+/* Ensure checkboxes are displayed horizontally */
 .filter-container {
     display: flex;
-    justify-content: center; /* Center checkboxes */
+    justify-content: center; /* Center align checkboxes */
     align-items: center;
     gap: 15px;
-    margin: 20px auto;
-    flex-wrap: wrap;
-    max-width: 100%; /* Ensure proper responsiveness */
+    flex-wrap: wrap; /* Wrap to next line on small screens */
+    margin-bottom: 20px;
 }
 
 /* Style for checkbox labels */
@@ -21,10 +19,17 @@
 
 /* Increase checkbox size for better usability */
 .filter-container input[type="checkbox"] {
-    transform: scale(1.5); /* Makes checkboxes larger */
-    margin-right: 8px;
+    transform: scale(1.3); /* Increases checkbox size */
     cursor: pointer;
+    margin-right: 5px;
 }
+
+/* Ensure publications remain aligned properly */
+#publications-list {
+    list-style-type: none;
+    padding: 0;
+}
+
 
 /* Publications List */
 .publications-container {
