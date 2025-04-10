@@ -14,11 +14,12 @@ pagination:
     <input type="checkbox" id="journalFilter"> <label for="journalFilter">Journals</label>
     <input type="checkbox" id="conferenceFilter"> <label for="conferenceFilter">Conferences</label>
 </div>
-<!-- 
+
 {% capture publications_content %}
-{% include_relative all-publications.md %}
-{% endcapture %} -->
+{% include all-publications.md %}
+{% endcapture %}
 
-<!-- {{ publications_content | markdownify }} --> 
+{{ publications_content | markdownify }}
 
-{% include all_publications.html %}
+
+<!-- {% include all_publications.html %} -->
