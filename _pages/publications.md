@@ -10,14 +10,14 @@ pagination:
   categories: ["journal", "conference"]
 ---
 <div class="filter-container" style="display: flex; justify-content: center; align-items: center; gap: 20px; margin-top: 20px;">
-  <label style="display: flex; align-items: center; gap: 5px; font-size: 14px;">
-    <input type="checkbox" id="selectAll" style="width: 14px; height: 14px;"> Select All
+  <label style="display: flex; align-items: center; gap: 5px; font-size: 22px;">
+    <input type="checkbox" id="selectAll" style="width: 14px; height: 22px;"> Select All
   </label>
-  <label style="display: flex; align-items: center; gap: 5px; font-size: 14px;">
-    <input type="checkbox" id="journal" data-category="journal" style="width: 14px; height: 14px;"> Journals
+  <label style="display: flex; align-items: center; gap: 5px; font-size: 22px;">
+    <input type="checkbox" id="journal" data-category="journal" style="width: 14px; height: 22px;"> Journals
   </label>
-  <label style="display: flex; align-items: center; gap: 5px; font-size: 14px;">
-    <input type="checkbox" id="conference" data-category="conference" style="width: 14px; height: 14px;"> Conferences
+  <label style="display: flex; align-items: center; gap: 5px; font-size: 22px;">
+    <input type="checkbox" id="conference" data-category="conference" style="width: 22px; height: 22px;"> Conferences
   </label>
 </div>
 
