@@ -8,17 +8,18 @@ document.addEventListener("DOMContentLoaded", function () {
     const nextBtn = document.getElementById("nextPage");
     const pageInfo = document.getElementById("page-info");
 
-    const itemsPerPage = 10;  // Show 10 publications per page
+    const itemsPerPage = 10;
     let currentPage = 1;
     let filteredPublications = [...publications];
 
     function updatePaginationControls() {
         const totalPages = Math.ceil(filteredPublications.length / itemsPerPage);
+
         if (pageInfo) {
-            pageInfo.textContent = `Page ${currentPage} of ${totalPages || 1}`;
+            pageInfo.textContent = totalPages === 0 ? "No publications found." : `Page ${currentPage} of ${totalPages}`;
         }
 
-        if (prevBtn) prevBtn.disabled = (currentPage === 1);
+        if (prevBtn) prevBtn.disabled = (currentPage === 1 || totalPages === 0);
         if (nextBtn) nextBtn.disabled = (currentPage >= totalPages || totalPages === 0);
     }
 
@@ -29,15 +30,13 @@ document.addEventListener("DOMContentLoaded", function () {
         const startIdx = (currentPage - 1) * itemsPerPage;
         const endIdx = startIdx + itemsPerPage;
 
-        filteredPublications.slice(startIdx, endIdx).forEach(pub => {
-            pub.style.display = "block";
-        });
         if (filteredPublications.length === 0) {
-            publications.forEach(pub => pub.style.display = "none");
-            if (pageInfo) pageInfo.textContent = "No publications found.";
+            pageInfo.textContent = "No publications found.";
+            updatePaginationControls();
             return;
         }
-        
+
+        filteredPublications.slice(startIdx, endIdx).forEach(pub => pub.style.display = "block");
 
         updatePaginationControls();
     }
@@ -54,23 +53,23 @@ document.addEventListener("DOMContentLoaded", function () {
             const isJournal = category.includes("journal") || category.includes("manuscript");
             const isConference = category.includes("conference");
 
-
-            return (
-                (showJournals && isJournal) ||
-                (showConferences && isConference)
-            );
-            
+            return (showJournals && isJournal) || (showConferences && isConference);
         });
+
+        // If nothing is selected, show all publications
+        if (!showJournals && !showConferences) {
+            filteredPublications = [...publications];
+        }
+
+        // Update "Select All" checkbox dynamically
+        selectAll.checked = showJournals && showConferences;
 
         // Reset to first page after filtering
         currentPage = 1;
         showPage(currentPage);
-
-        // Update "Select All" checkbox
-        selectAll.checked = showJournals && showConferences;
     }
 
-    // Initialize event listeners only if elements exist
+    // Event Listeners
     if (prevBtn) {
         prevBtn.addEventListener("click", function () {
             if (currentPage > 1) showPage(currentPage - 1);
@@ -86,16 +85,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (selectAll) {
         selectAll.addEventListener("change", function () {
-            if (journalFilter) journalFilter.checked = this.checked;
-            if (conferenceFilter) conferenceFilter.checked = this.checked;
+            journalFilter.checked = this.checked;
+            conferenceFilter.checked = this.checked;
             filterPublications();
         });
     }
 
     if (journalFilter) journalFilter.addEventListener("change", filterPublications);
     if (conferenceFilter) conferenceFilter.addEventListener("change", filterPublications);
-    selectAll.checked = journalFilter.checked && conferenceFilter.checked;
 
-    // Show first page when the page loads
+    // Apply filter and pagination on load
     filterPublications();
 });
