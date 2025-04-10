@@ -11,11 +11,11 @@ pagination:
 ---
 
 
-<!-- <div class="filter-container">
-    <input type="checkbox" id="selectAll"> <label for="selectAll">Select All</label>
-    <input type="checkbox" id="journalFilter"> <label for="journalFilter">Journals</label>
-    <input type="checkbox" id="conferenceFilter"> <label for="conferenceFilter">Conferences</label>
-</div> -->
+<div class="filter-container">
+  <label><input type="checkbox" id="selectAll"> Select All</label>
+  <label><input type="checkbox" id="manuscripts" data-category="journal"> Journals</label>
+  <label><input type="checkbox" id="conferences" data-category="conference"> Conferences</label>
+</div>
 
 {% capture publications_content %}
 {% include all_publications.md %}
