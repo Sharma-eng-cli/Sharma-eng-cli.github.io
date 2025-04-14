@@ -9,7 +9,7 @@ pagination:
   collection: publications
   categories: ["journal", "conference"]
 ---
-<div class="filter-container" style="display: flex; justify-content: center; align-items: center; gap: 20px; margin-top: 20px;">
+<div class="filter-container" style="display: flex; justify-content: center; align-items: center; gap: 20px; margin-top: 22px;">
   <label style="display: flex; align-items: center; gap: 5px; font-size: 22px;">
     <input type="checkbox" id="selectAll" style="width: 22px; height: 22px;"> Select All
   </label>
@@ -20,7 +20,6 @@ pagination:
     <input type="checkbox" id="conference" data-category="conference" style="width: 22px; height: 22px;"> Conferences
   </label>
 </div>
-
 {% capture publications_content %}
 {% include all_publications.md %}
 {% endcapture %}
