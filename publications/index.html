@@ -33,6 +33,15 @@ pagination:
   </label>
 </div>
 
+<!-- Date Range Filter -->
+<div class="date-filter" style="text-align: center; margin: 25px 0;">
+  <label for="start-month" style="font-size: 18px;">Start Date:</label>
+  <input type="month" id="start-month" style="margin-right: 15px; font-size: 16px;">
+  <label for="end-month" style="font-size: 18px;">End Date:</label>
+  <input type="month" id="end-month" style="margin-right: 15px; font-size: 16px;">
+  <button id="applyDateFilter" style="padding: 5px 12px; font-size: 16px;">Apply Filter</button>
+</div>
+
 <!-- Publications List -->
 <!-- <div id="publications">
   <ul>
@@ -50,7 +59,7 @@ pagination:
 </div> -->
 
 <!-- Pagination Controls -->
-<div class="pagination-container">
+<!-- <div class="pagination-container">
   <div class="pagination">
     {% if paginator.previous_page %}
       <a href="{{ paginator.previous_page_path }}" class="prev">Previous</a>
@@ -60,6 +69,11 @@ pagination:
       <a href="{{ paginator.next_page_path }}" class="next">Next</a>
     {% endif %}
   </div>
+</div> -->
+<div class="pagination-controls" style="text-align: center; margin-top: 20px;">
+  <button id="prevPage" style="margin-right: 10px;">Previous</button>
+  <span id="page-info">Page 1</span>
+  <button id="nextPage" style="margin-left: 10px;">Next</button>
 </div>
 {% include all_publications.md %}
 <!-- Include JavaScript -->
