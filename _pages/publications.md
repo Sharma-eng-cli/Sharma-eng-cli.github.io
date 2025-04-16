@@ -21,30 +21,43 @@ pagination:
   </label>
 </div>
 
-<!-- 📌 Filter Type Toggle Dropdown -->
 <div class="calendar-filter-container">
-  <form id="calendarFilterForm">
-    <label for="filter-type">Select Filter Type:</label>
-    <select id="filter-type" name="filter-type">
-      <option value="monthOnly">Month Only</option>
-      <option value="monthYear">Month + Year</option>
+  <!-- Dropdown to choose filter type -->
+  <label for="filter-type">Filter By:</label>
+  <select id="filter-type">
+    <option value="monthOnly">Month Only</option>
+    <option value="monthYear">Month + Year</option>
+  </select>
+
+  <!-- Month-Only Filter -->
+  <div id="month-only-container" style="display: flex; gap: 8px; align-items: center;">
+    <label for="filter-month-only">Month:</label>
+    <select id="filter-month-only">
+      <option value="">Select Month</option>
+      <option value="01">January</option>
+      <option value="02">February</option>
+      <option value="03">March</option>
+      <option value="04">April</option>
+      <option value="05">May</option>
+      <option value="06">June</option>
+      <option value="07">July</option>
+      <option value="08">August</option>
+      <option value="09">September</option>
+      <option value="10">October</option>
+      <option value="11">November</option>
+      <option value="12">December</option>
     </select>
+    <button id="applyMonthOnlyFilter">Apply</button>
+  </div>
 
-    <!-- 📅 Month Only Filter -->
-  <div id="month-only-container" class="filter-group">
-      <label for="filter-month-only">Select Month:</label>
-      <input type="month" id="filter-month-only" name="filter-month-only" />
-      <button type="button" id="applyMonthOnlyFilter">Apply Filter</button>
-    </div>
-
-    <!-- 📅 Month + Year Filter -->
-  <div id="month-year-container" class="filter-group" style="display: none;">
-      <label for="filter-month-year">Select Month and Year:</label>
-      <input type="month" id="filter-month-year" name="filter-month-year" />
-      <button type="button" id="applyMonthYearFilter">Apply Filter</button>
-    </div>
-  </form>
+  <!-- Month + Year Filter -->
+  <div id="month-year-container" style="display: none; gap: 8px; align-items: center;">
+    <label for="filter-month-year">Month + Year:</label>
+    <input type="month" id="filter-month-year">
+    <button id="applyMonthYearFilter">Apply</button>
+  </div>
 </div>
+
 
 
 {% capture publications_content %}
