@@ -112,3 +112,17 @@
         align-items: center;
     }
 }
+
+/* Disable the other filter when one is active */
+#filter-month-only:disabled,
+#applyMonthOnlyFilter:disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+#filter-month-year:disabled,
+#applyMonthYearFilter:disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
