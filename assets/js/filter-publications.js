@@ -25,18 +25,31 @@ document.addEventListener("DOMContentLoaded", function () {
     let filteredPublications = [...publications];
   
     if (filterTypeSelect) {
-      filterTypeSelect.addEventListener("change", () => {
-        const selected = filterTypeSelect.value;
-        if (selected === "monthOnly") {
-          monthOnlyContainer.style.display = "flex";
-          monthYearContainer.style.display = "none";
-          filterMonthYearInput.value = "";
-        } else if (selected === "monthYear") {
-          monthOnlyContainer.style.display = "none";
-          monthYearContainer.style.display = "flex";
-          filterMonthOnlyInput.value = "";
-        }
-      });
+        filterTypeSelect.addEventListener("change", () => {
+            const selected = filterTypeSelect.value;
+            if (selected === "monthOnly") {
+              monthOnlyContainer.style.display = "flex";
+              monthYearContainer.style.display = "none";
+              filterMonthYearInput.value = "";
+          
+              // ✅ Enable Month-Only and Disable Month+Year
+              filterMonthOnlyInput.disabled = false;
+              applyMonthOnlyFilterBtn.disabled = false;
+              filterMonthYearInput.disabled = true;
+              applyMonthYearFilterBtn.disabled = true;
+              
+            } else if (selected === "monthYear") {
+              monthOnlyContainer.style.display = "none";
+              monthYearContainer.style.display = "flex";
+              filterMonthOnlyInput.value = "";
+          
+              // ✅ Enable Month+Year and Disable Month-Only
+              filterMonthYearInput.disabled = false;
+              applyMonthYearFilterBtn.disabled = false;
+              filterMonthOnlyInput.disabled = true;
+              applyMonthOnlyFilterBtn.disabled = true;
+            }
+          });          
     }
   
     function updatePaginationControls() {
