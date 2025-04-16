@@ -33,12 +33,15 @@ pagination:
   </label>
 </div>
 
-<!-- Month Filter Section -->
-<div class="month-filter" style="text-align: center; margin: 25px 0;">
-  <label for="filter-month" style="font-size: 18px;">Select Month:</label>
-  <input type="month" id="filter-month" style="font-size: 16px; margin-right: 15px;">
-  <button id="applyMonthFilter" style="padding: 5px 12px; font-size: 16px;">Apply Month Filter</button>
+<!-- 📅 Responsive Month-Year Filter -->
+<div class="calendar-filter-container">
+  <form id="calendarFilterForm">
+    <label for="filter-month">Select Month:</label>
+    <input type="month" id="filter-month" name="filter-month" />
+    <button type="button" id="applyMonthFilter">Apply Filter</button>
+  </form>
 </div>
+
 
 <!-- Publications List -->
 <!-- <div id="publications">

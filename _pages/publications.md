@@ -21,11 +21,13 @@ pagination:
   </label>
 </div>
 
-<!-- 📅 MONTH FILTER -->
-<div class="month-filter" style="display: flex; justify-content: center; align-items: center; gap: 15px; margin-top: 20px; flex-wrap: wrap;">
-  <label for="filter-month" style="font-size: 18px;">Select Month:</label>
-  <input type="month" id="filter-month" style="padding: 5px; font-size: 16px;" />
-  <button id="applyMonthFilter" style="padding: 5px 15px; font-size: 16px;">Apply Month Filter</button>
+<!-- 📅 Responsive Month-Year Filter -->
+<div class="calendar-filter-container">
+  <form id="calendarFilterForm">
+    <label for="filter-month">Select Month:</label>
+    <input type="month" id="filter-month" name="filter-month" />
+    <button type="button" id="applyMonthFilter">Apply Filter</button>
+  </form>
 </div>
 
 {% capture publications_content %}

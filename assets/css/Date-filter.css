@@ -1,0 +1,62 @@
+.calendar-filter-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px auto;
+    padding: 15px 20px;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    max-width: 500px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  #calendarFilterForm {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  #calendarFilterForm label {
+    font-size: 16px;
+    font-weight: 500;
+  }
+  
+  #filter-month {
+    padding: 6px 10px;
+    font-size: 15px;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+  }
+  
+  #applyMonthFilter {
+    padding: 6px 12px;
+    font-size: 15px;
+    background-color: #007acc;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  #applyMonthFilter:hover {
+    background-color: #005fa3;
+  }
+  @media (max-width: 500px) {
+    .calendar-filter-container {
+      padding: 10px;
+    }
+  
+    #calendarFilterForm label {
+      font-size: 14px;
+    }
+  
+    #applyMonthFilter {
+      font-size: 14px;
+      padding: 5px 10px;
+    }
+  }
+    
