@@ -3,10 +3,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const selectAll = document.getElementById("selectAll");
     const publications = Array.from(document.querySelectorAll("#publications-list .publication"));
 
-    const startInput = document.getElementById("start-month");
-    const endInput = document.getElementById("end-month");
-    const applyDateBtn = document.getElementById("applyDateFilter");
-
+    const applyMonthBtn = document.getElementById("applyMonthFilter");  // New button for month filter
+    const monthInput = document.getElementById("filter-month");  // New input for selecting month
     const prevBtn = document.getElementById("prevPage");
     const nextBtn = document.getElementById("nextPage");
     const pageInfo = document.getElementById("page-info");
@@ -57,17 +55,11 @@ document.addEventListener("DOMContentLoaded", function () {
             .filter(checkbox => checkbox.checked && checkbox.id !== "selectAll")
             .map(checkbox => checkbox.getAttribute("data-category"));
 
-        const start = startInput && startInput.value ? new Date(startInput.value + "-01") : null;
-        const end = endInput && endInput.value ? new Date(endInput.value + "-01") : null;
-
         filteredPublications = publications.filter(pub => {
             const pubCategories = pub.getAttribute("data-category").split(" ");
             const matchesCategory = selectedCategories.length === 0 || selectedCategories.some(cat => pubCategories.includes(cat));
 
-            const pubDate = parsePubDate(pub);
-            const matchesDate = (!start || (pubDate && pubDate >= start)) && (!end || (pubDate && pubDate <= end));
-
-            return matchesCategory && matchesDate;
+            return matchesCategory;
         });
 
         const allChecked = checkboxes.length - 1 === selectedCategories.length;
@@ -75,6 +67,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
         currentPage = 1;
         showPage(currentPage);
+    }
+
+    function filterPublicationsByMonth(selectedMonth) {
+        filteredPublications = publications.filter(pub => {
+            const pubDate = pub.querySelector('.pub-date').textContent; // Adjust this to your actual date element
+            const pubMonth = pubDate.slice(0, 7); // Extract Year-Month (format YYYY-MM)
+
+            return pubMonth === selectedMonth;
+        });
+
+        currentPage = 1;
+        showPage(currentPage);
+    }
+
+    // Event listener for the month filter button
+    if (applyMonthBtn) {
+        applyMonthBtn.addEventListener('click', function () {
+            const selectedMonth = monthInput.value;
+
+            if (selectedMonth) {
+                filterPublicationsByMonth(selectedMonth);
+            } else {
+                alert('Please select a month.');
+            }
+        });
     }
 
     if (prevBtn) {
@@ -101,9 +118,5 @@ document.addEventListener("DOMContentLoaded", function () {
         checkbox.addEventListener("change", filterPublications);
     });
 
-    if (applyDateBtn) {
-        applyDateBtn.addEventListener("click", filterPublications);
-    }
-
-    filterPublications();
+    filterPublications();  // Initial filtering based on categories
 });

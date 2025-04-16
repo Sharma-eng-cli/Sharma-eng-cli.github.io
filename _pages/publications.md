@@ -21,15 +21,11 @@ pagination:
   </label>
 </div>
 
-<!-- 📅 FILTER CONTROLS: Date Range -->
-<div style="display: flex; justify-content: center; align-items: center; gap: 15px; margin-top: 20px; flex-wrap: wrap;">
-  <label for="start-month" style="font-size: 18px;">Start Date:</label>
-  <input type="month" id="start-month" style="padding: 5px; font-size: 16px;" />
-
-  <label for="end-month" style="font-size: 18px;">End Date:</label>
-  <input type="month" id="end-month" style="padding: 5px; font-size: 16px;" />
-
-  <button id="applyDateFilter" style="padding: 5px 15px; font-size: 16px;">Apply Filter</button>
+<!-- 📅 MONTH FILTER -->
+<div class="month-filter" style="display: flex; justify-content: center; align-items: center; gap: 15px; margin-top: 20px; flex-wrap: wrap;">
+  <label for="filter-month" style="font-size: 18px;">Select Month:</label>
+  <input type="month" id="filter-month" style="padding: 5px; font-size: 16px;" />
+  <button id="applyMonthFilter" style="padding: 5px 15px; font-size: 16px;">Apply Month Filter</button>
 </div>
 
 {% capture publications_content %}
