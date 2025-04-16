@@ -74,53 +74,58 @@ document.addEventListener("DOMContentLoaded", function () {
       filteredPublications.slice(startIdx, endIdx).forEach(pub => pub.style.display = "block");
       updatePaginationControls();
     }
-  
+    
     function filterPublications() {
-      const selectedCategories = Array.from(checkboxes)
-        .filter(cb => cb.checked && cb.id !== "selectAll")
-        .map(cb => cb.getAttribute("data-category"));
-  
-      filteredPublications = publications.filter(pub => {
-        const pubCategories = pub.getAttribute("data-category").split(" ");
-        const matchesCategory = selectedCategories.length === 0 || selectedCategories.some(cat => pubCategories.includes(cat));
-        return matchesCategory;
-      });
-  
-      const selectedMonthOnly = filterMonthOnlyInput.value;
-      if (selectedMonthOnly) {
-        const selectedMonthNum = selectedMonthOnly.split("-")[1];
-        filteredPublications = filteredPublications.filter(pub => {
-          const pubDateElem = pub.querySelector(".pub-date");
-          const pubDate = new Date(pubDateElem.textContent.trim());
-          return (pubDate.getMonth() + 1).toString().padStart(2, "0") === selectedMonthNum;
+        const selectedCategories = Array.from(checkboxes)
+          .filter(cb => cb.checked && cb.id !== "selectAll")
+          .map(cb => cb.getAttribute("data-category"));
+      
+        filteredPublications = publications.filter(pub => {
+          const pubCategories = pub.getAttribute("data-category").split(" ");
+          return selectedCategories.length === 0 || selectedCategories.some(cat => pubCategories.includes(cat));
         });
+      
+        // Clear other filters if only one is selected
+        const selectedFilterType = filterTypeSelect.value;
+      
+        if (selectedFilterType === "monthOnly") {
+          const selectedMonthOnly = filterMonthOnlyInput.value;
+          if (selectedMonthOnly) {
+            const selectedMonthNum = selectedMonthOnly.split("-")[1];
+            filteredPublications = filteredPublications.filter(pub => {
+              const pubDateElem = pub.querySelector(".pub-date");
+              const pubDate = new Date(pubDateElem.textContent.trim());
+              return (pubDate.getMonth() + 1).toString().padStart(2, "0") === selectedMonthNum;
+            });
+          }
+        } else if (selectedFilterType === "monthYear") {
+          const selectedMonthYear = filterMonthYearInput.value;
+          if (selectedMonthYear) {
+            const [year, month] = selectedMonthYear.split("-");
+            filteredPublications = filteredPublications.filter(pub => {
+              const pubDateElem = pub.querySelector(".pub-date");
+              const pubDate = new Date(pubDateElem.textContent.trim());
+              return pubDate.getFullYear().toString() === year && (pubDate.getMonth() + 1).toString().padStart(2, "0") === month;
+            });
+          }
+        } else if (selectedFilterType === "yearOnly") {
+          const selectedYearOnly = filterYearOnlyInput.value;
+          if (selectedYearOnly) {
+            filteredPublications = filteredPublications.filter(pub => {
+              const pubDateElem = pub.querySelector(".pub-date");
+              const pubDate = new Date(pubDateElem.textContent.trim());
+              return pubDate.getFullYear().toString() === selectedYearOnly;
+            });
+          }
+        }
+      
+        const allChecked = checkboxes.length - 1 === selectedCategories.length;
+        selectAll.checked = allChecked;
+      
+        currentPage = 1;
+        showPage(currentPage);
       }
-  
-      const selectedMonthYear = filterMonthYearInput.value;
-      if (selectedMonthYear) {
-        const [year, month] = selectedMonthYear.split("-");
-        filteredPublications = filteredPublications.filter(pub => {
-          const pubDateElem = pub.querySelector(".pub-date");
-          const pubDate = new Date(pubDateElem.textContent.trim());
-          return pubDate.getFullYear().toString() === year && (pubDate.getMonth() + 1).toString().padStart(2, "0") === month;
-        });
-      }
-  
-      const selectedYearOnly = filterYearOnlyInput.value;
-      if (selectedYearOnly) {
-        filteredPublications = filteredPublications.filter(pub => {
-          const pubDateElem = pub.querySelector(".pub-date");
-          const pubDate = new Date(pubDateElem.textContent.trim());
-          return pubDate.getFullYear().toString() === selectedYearOnly;
-        });
-      }
-  
-      const allChecked = checkboxes.length - 1 === selectedCategories.length;
-      selectAll.checked = allChecked;
-  
-      currentPage = 1;
-      showPage(currentPage);
-    }
+      
   
     function disableOtherFilter(selectedFilter) {
       filterMonthOnlyInput.disabled = selectedFilter !== "monthOnly";
