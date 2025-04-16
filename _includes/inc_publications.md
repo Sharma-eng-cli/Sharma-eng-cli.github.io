@@ -7,7 +7,7 @@
       <li class="publication" data-category="journal">
         <strong><a href="{{ pub.pdf }}">{{ pub.title }}</a></strong><br>
         <em>{{ pub.author }}</em><br>
-        📅 <strong>Date:</strong> {{ pub.date | date: "%B %d, %Y" }}<br>
+        📅 📅 <strong>Date:</strong> <span class="pub-date">{{ pub.date | date: "%B %d, %Y" }}</span><br>
         🏛 <strong>Venue:</strong> {{ pub.venue }}<br>
         {% if pub.slides %}
           📄 <a href="{{ pub.slides }}">Slides</a> |
@@ -29,7 +29,7 @@
       <li class="publication" data-category="conference">
         <strong><a href="{{ pub.pdf }}">{{ pub.title }}</a></strong><br>
         <em>{{ pub.author }}</em><br>
-        📅 <strong>Date:</strong> {{ pub.date | date: "%B %d, %Y" }}<br>
+        📅 <strong>Date:</strong> <span class="pub-date">{{ pub.date | date: "%B %d, %Y" }}</span><br>
         🏛 <strong>Venue:</strong> {{ pub.venue }}<br>
         {% if pub.slides %}
           📄 <a href="{{ pub.slides }}">Slides</a> |

@@ -3,6 +3,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const selectAll = document.getElementById("selectAll");
     const publications = Array.from(document.querySelectorAll("#publications-list .publication"));
 
+    const startInput = document.getElementById("start-month");
+    const endInput = document.getElementById("end-month");
+    const applyDateBtn = document.getElementById("applyDateFilter");
+
     const prevBtn = document.getElementById("prevPage");
     const nextBtn = document.getElementById("nextPage");
     const pageInfo = document.getElementById("page-info");
@@ -16,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (pageInfo) {
             pageInfo.textContent = totalPages === 0 ? "No publications found." : `Page ${currentPage} of ${totalPages}`;
-            pageInfo.style.display = totalPages === 0 ? "block" : "block"; // Ensure visibility
+            pageInfo.style.display = totalPages === 0 ? "block" : "block";
         }
 
         if (prevBtn) prevBtn.disabled = (currentPage === 1 || totalPages === 0);
@@ -25,22 +29,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function showPage(page) {
         currentPage = page;
+        publications.forEach(pub => pub.style.display = "none");
 
         const totalPages = Math.ceil(filteredPublications.length / itemsPerPage);
         if (currentPage > totalPages && totalPages > 0) {
-            currentPage = 1; // Reset to first page if filtering reduces available pages
+            currentPage = 1;
         }
 
         const startIdx = (currentPage - 1) * itemsPerPage;
         const endIdx = startIdx + itemsPerPage;
 
-        // Hide all publications first
-        publications.forEach(pub => pub.style.display = "none");
-
-        // Show only the filtered ones
         filteredPublications.slice(startIdx, endIdx).forEach(pub => pub.style.display = "block");
 
         updatePaginationControls();
+    }
+
+    function parsePubDate(pubElement) {
+        const dateElement = pubElement.querySelector(".pub-date");
+        if (!dateElement) return null;
+        const match = dateElement.textContent.match(/Date:\s*([A-Za-z]+ \d{1,2}, \d{4})/);
+        if (match) return new Date(match[1]);
+        return null;
     }
 
     function filterPublications() {
@@ -48,29 +57,26 @@ document.addEventListener("DOMContentLoaded", function () {
             .filter(checkbox => checkbox.checked && checkbox.id !== "selectAll")
             .map(checkbox => checkbox.getAttribute("data-category"));
 
+        const start = startInput && startInput.value ? new Date(startInput.value + "-01") : null;
+        const end = endInput && endInput.value ? new Date(endInput.value + "-01") : null;
+
         filteredPublications = publications.filter(pub => {
-            const pubCategory = pub.getAttribute("data-category"); // Ensure attribute exists
-            return selectedCategories.length === 0 || selectedCategories.includes(pubCategory);
+            const pubCategories = pub.getAttribute("data-category").split(" ");
+            const matchesCategory = selectedCategories.length === 0 || selectedCategories.some(cat => pubCategories.includes(cat));
+
+            const pubDate = parsePubDate(pub);
+            const matchesDate = (!start || (pubDate && pubDate >= start)) && (!end || (pubDate && pubDate <= end));
+
+            return matchesCategory && matchesDate;
         });
 
-        // Ensure filtered content is always shown properly
-        publications.forEach(pub => {
-            pub.style.display = "none"; // Hide everything first
-        });
-
-        filteredPublications.forEach(pub => {
-            pub.style.display = "block"; // Show filtered ones
-        });
-
-        // Update "Select All" checkbox dynamically
         const allChecked = checkboxes.length - 1 === selectedCategories.length;
         selectAll.checked = allChecked;
 
-        // Reset pagination after filtering
-        showPage(1);
+        currentPage = 1;
+        showPage(currentPage);
     }
 
-    // Pagination Controls
     if (prevBtn) {
         prevBtn.addEventListener("click", function () {
             if (currentPage > 1) showPage(currentPage - 1);
@@ -84,7 +90,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Select All Logic
     if (selectAll) {
         selectAll.addEventListener("change", function () {
             checkboxes.forEach(checkbox => (checkbox.checked = selectAll.checked));
@@ -96,6 +101,9 @@ document.addEventListener("DOMContentLoaded", function () {
         checkbox.addEventListener("change", filterPublications);
     });
 
-    // Apply filter and pagination on load
+    if (applyDateBtn) {
+        applyDateBtn.addEventListener("click", filterPublications);
+    }
+
     filterPublications();
 });
