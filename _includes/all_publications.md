@@ -4,7 +4,7 @@
   <li class="publication" data-category="journal">
     <strong><a href="http://academicpages.github.io/files/paper1.pdf">Journal Paper Title 1</a></strong><br>
     <em>Author Name</em><br>
-    📅 <strong>Date:</strong> <span class="pub-date">January 15, 2020</span><br>
+    📅 <strong>Date:</strong> <span class="pub-date">Februrary 15, 2024</span><br>
     🏛 <strong>Venue:</strong> International Journal of AI Research <br>
     📖 Citation: <em>IJAR (Vol. 10, Issue 2)</em><br>
     📝 <em>Excerpt:</em> This paper explores deep learning applications in healthcare. <!--more--> 
@@ -17,6 +17,42 @@
     🏛 <strong>Venue:</strong> AI & Machine Learning Journal <br>
     📄 <a href="http://academicpages.github.io/files/slides2.pdf">Slides</a> | 📖 Citation: <em>AIML Journal (Vol. 15, Issue 4)</em><br>
     📝 <em>Excerpt:</em> This study focuses on optimization of neural networks.<!--more--> 
+  </li>
+
+  <li class="publication" data-category="journal">
+    <strong><a href="http://academicpages.github.io/files/paper1.pdf">Journal Paper Title 1</a></strong><br>
+    <em>Author Name</em><br>
+    📅 <strong>Date:</strong> <span class="pub-date">June 15, 2005</span><br>
+    🏛 <strong>Venue:</strong> International Journal of AI Research <br>
+    📖 Citation: <em>IJAR (Vol. 10, Issue 2)</em><br>
+    📝 <em>Excerpt:</em> This paper explores deep learning applications in healthcare. <!--more--> 
+  </li>
+
+  <li class="publication" data-category="journal">
+    <strong><a href="http://academicpages.github.io/files/paper1.pdf">Journal Paper Title 1</a></strong><br>
+    <em>Author Name</em><br>
+    📅 <strong>Date:</strong> <span class="pub-date">November 15, 2020</span><br>
+    🏛 <strong>Venue:</strong> International Journal of AI Research <br>
+    📖 Citation: <em>IJAR (Vol. 10, Issue 2)</em><br>
+    📝 <em>Excerpt:</em> This paper explores deep learning applications in healthcare. <!--more--> 
+  </li>
+
+  <li class="publication" data-category="journal">
+    <strong><a href="http://academicpages.github.io/files/paper1.pdf">Journal Paper Title 1</a></strong><br>
+    <em>Author Name</em><br>
+    📅 <strong>Date:</strong> <span class="pub-date">January 15, 2019</span><br>
+    🏛 <strong>Venue:</strong> International Journal of AI Research <br>
+    📖 Citation: <em>IJAR (Vol. 10, Issue 2)</em><br>
+    📝 <em>Excerpt:</em> This paper explores deep learning applications in healthcare. <!--more--> 
+  </li>
+
+  <li class="publication" data-category="journal">
+    <strong><a href="http://academicpages.github.io/files/paper1.pdf">Journal Paper Title 1</a></strong><br>
+    <em>Author Name</em><br>
+    📅 <strong>Date:</strong> <span class="pub-date">January 15, 2018</span><br>
+    🏛 <strong>Venue:</strong> International Journal of AI Research <br>
+    📖 Citation: <em>IJAR (Vol. 10, Issue 2)</em><br>
+    📝 <em>Excerpt:</em> This paper explores deep learning applications in healthcare. <!--more--> 
   </li>
 </ul>
 
@@ -34,7 +70,34 @@
   <li class="publication" data-category="conference">
     <strong><a href="http://example.com/paper4.pdf">Conference Paper Title 2</a></strong><br>
     <em>Author Name, Co-Author</em><br>
-    📅 <strong>Date:</strong> <span class="pub-date">February 15, 2000</span><br>
+    📅 <strong>Date:</strong> <span class="pub-date">May 15, 1999</span><br>
+    🏛 <strong>Venue:</strong> AI & Networks Summit <br>
+    📄 <a href="http://example.com/slides4.pdf">Slides</a> | 📖 Citation: <em>AIN 2025</em><br>
+    📝 <em>Excerpt:</em> This paper explores AI-driven optimization in large-scale networks.<!--more--> 
+  </li>
+
+  <li class="publication" data-category="conference">
+    <strong><a href="http://example.com/paper4.pdf">Conference Paper Title 2</a></strong><br>
+    <em>Author Name, Co-Author</em><br>
+    📅 <strong>Date:</strong> <span class="pub-date">April 15, 1990</span><br>
+    🏛 <strong>Venue:</strong> AI & Networks Summit <br>
+    📄 <a href="http://example.com/slides4.pdf">Slides</a> | 📖 Citation: <em>AIN 2025</em><br>
+    📝 <em>Excerpt:</em> This paper explores AI-driven optimization in large-scale networks.<!--more--> 
+  </li>
+
+  <li class="publication" data-category="conference">
+    <strong><a href="http://example.com/paper4.pdf">Conference Paper Title 2</a></strong><br>
+    <em>Author Name, Co-Author</em><br>
+    📅 <strong>Date:</strong> <span class="pub-date">February 15, 2005</span><br>
+    🏛 <strong>Venue:</strong> AI & Networks Summit <br>
+    📄 <a href="http://example.com/slides4.pdf">Slides</a> | 📖 Citation: <em>AIN 2025</em><br>
+    📝 <em>Excerpt:</em> This paper explores AI-driven optimization in large-scale networks.<!--more--> 
+  </li>
+
+   <li class="publication" data-category="conference">
+    <strong><a href="http://example.com/paper4.pdf">Conference Paper Title 2</a></strong><br>
+    <em>Author Name, Co-Author</em><br>
+    📅 <strong>Date:</strong> <span class="pub-date">September 15, 2002</span><br>
     🏛 <strong>Venue:</strong> AI & Networks Summit <br>
     📄 <a href="http://example.com/slides4.pdf">Slides</a> | 📖 Citation: <em>AIN 2025</em><br>
     📝 <em>Excerpt:</em> This paper explores AI-driven optimization in large-scale networks.<!--more--> 
