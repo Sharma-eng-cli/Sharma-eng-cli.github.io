@@ -50,12 +50,13 @@ pagination:
     <button id="applyMonthOnlyFilter">Apply</button>
   </div>
 
-  <!-- Month + Year Filter -->
-  <div id="month-year-container" style="display: none; gap: 8px; align-items: center;">
-    <label for="filter-month-year">Month + Year:</label>
-    <input type="month" id="filter-month-year">
-    <button id="applyMonthYearFilter">Apply</button>
-  </div>
+<!-- Month + Year Filter -->
+<div id="month-year-container" style="display: none; gap: 8px; align-items: center; max-width: 360px; flex-wrap: wrap;">
+  <label for="filter-month-year">Month + Year:</label>
+  <input type="month" id="filter-month-year">
+  <button id="applyMonthYearFilter">Apply</button>
+</div>
+
 </div>
 
 
