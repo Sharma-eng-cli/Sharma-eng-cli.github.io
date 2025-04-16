@@ -1,4 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
+    const checkboxes = document.querySelectorAll(".filter-container input[type='checkbox']");
+    const selectAll = document.getElementById("selectAll");
+    const publications = Array.from(document.querySelectorAll("#journal-publications .publication, #conference-publications .publication"));
+  
     const filterTypeSelect = document.getElementById("filter-type");
     const monthOnlyContainer = document.getElementById("month-only-container");
     const monthYearContainer = document.getElementById("month-year-container");
@@ -9,9 +13,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const filterMonthYearInput = document.getElementById("filter-month-year");
     const applyMonthYearFilterBtn = document.getElementById("applyMonthYearFilter");
   
-    const checkboxes = document.querySelectorAll(".filter-container input[type='checkbox']");
-    const selectAll = document.getElementById("selectAll");
-    const publications = Array.from(document.querySelectorAll("#journal-publications .publication, #conference-publications .publication"));
+    const filterMonthInput = document.getElementById("filter-month");
+    const applyMonthBtn = document.getElementById("applyMonthFilter");
   
     const prevBtn = document.getElementById("prevPage");
     const nextBtn = document.getElementById("nextPage");
@@ -21,19 +24,20 @@ document.addEventListener("DOMContentLoaded", function () {
     let currentPage = 1;
     let filteredPublications = [...publications];
   
-    // Toggle between filter types
-    filterTypeSelect.addEventListener("change", () => {
-      const selected = filterTypeSelect.value;
-      if (selected === "monthOnly") {
-        monthOnlyContainer.style.display = "flex";
-        monthYearContainer.style.display = "none";
-        filterMonthYearInput.value = "";
-      } else if (selected === "monthYear") {
-        monthOnlyContainer.style.display = "none";
-        monthYearContainer.style.display = "flex";
-        filterMonthOnlyInput.value = "";
-      }
-    });
+    if (filterTypeSelect) {
+      filterTypeSelect.addEventListener("change", () => {
+        const selected = filterTypeSelect.value;
+        if (selected === "monthOnly") {
+          monthOnlyContainer.style.display = "flex";
+          monthYearContainer.style.display = "none";
+          filterMonthYearInput.value = "";
+        } else if (selected === "monthYear") {
+          monthOnlyContainer.style.display = "none";
+          monthYearContainer.style.display = "flex";
+          filterMonthOnlyInput.value = "";
+        }
+      });
+    }
   
     function updatePaginationControls() {
       const totalPages = Math.ceil(filteredPublications.length / itemsPerPage);
@@ -57,13 +61,15 @@ document.addEventListener("DOMContentLoaded", function () {
       const endIdx = startIdx + itemsPerPage;
   
       filteredPublications.slice(startIdx, endIdx).forEach(pub => pub.style.display = "block");
+  
       updatePaginationControls();
     }
   
     function parsePubDate(pubElement) {
       const dateElement = pubElement.querySelector(".pub-date");
       if (!dateElement) return null;
-      return new Date(dateElement.textContent.trim());
+      const text = dateElement.textContent.trim();
+      return new Date(text);
     }
   
     function filterPublications() {
@@ -71,35 +77,52 @@ document.addEventListener("DOMContentLoaded", function () {
         .filter(cb => cb.checked && cb.id !== "selectAll")
         .map(cb => cb.getAttribute("data-category"));
   
-      const monthOnlyVal = filterMonthOnlyInput.value;
-      const monthYearVal = filterMonthYearInput.value;
+      const selectedMonthValue = filterMonthInput ? filterMonthInput.value : null;
+      let selectedYear = null;
+      let selectedMonth = null;
+      if (selectedMonthValue) {
+        [selectedYear, selectedMonth] = selectedMonthValue.split("-");
+      }
   
       filteredPublications = publications.filter(pub => {
         const pubCategories = pub.getAttribute("data-category").split(" ");
         const matchesCategory = selectedCategories.length === 0 || selectedCategories.some(cat => pubCategories.includes(cat));
   
         const pubDate = parsePubDate(pub);
-        if (!pubDate) return false;
+        const matchesMonth = selectedMonth && selectedYear
+          ? pubDate && (pubDate.getFullYear().toString() === selectedYear && (pubDate.getMonth() + 1).toString().padStart(2, '0') === selectedMonth)
+          : true;
   
-        const pubMonth = (pubDate.getMonth() + 1).toString().padStart(2, '0');
-        const pubYear = pubDate.getFullYear().toString();
-  
-        // Apply Month-Only filtering
-        if (monthOnlyVal) {
-          return pubMonth === monthOnlyVal;
-        }
-  
-        // Apply Month + Year filtering
-        if (monthYearVal) {
-          const [selectedYear, selectedMonth] = monthYearVal.split("-");
-          return pubMonth === selectedMonth && pubYear === selectedYear;
-        }
-  
-        return matchesCategory;
+        return matchesCategory && matchesMonth;
       });
   
+      // ✅ UPDATED: Month-Only filtering logic
+      const selectedMonthOnly = filterMonthOnlyInput.value;
+      if (selectedMonthOnly) {
+        const selectedMonthNum = selectedMonthOnly; // directly gets "04", "05", etc.
+        filteredPublications = filteredPublications.filter(pub => {
+          const pubDateElem = pub.querySelector(".pub-date");
+          const pubDate = new Date(pubDateElem.textContent.trim());
+          const pubMonth = (pubDate.getMonth() + 1).toString().padStart(2, "0");
+          return pubMonth === selectedMonthNum;
+        });
+      }
+  
+      const selectedMonthYear = filterMonthYearInput.value;
+      if (selectedMonthYear) {
+        const selectedMonthNum = selectedMonthYear.split("-")[1];
+        const selectedYear = selectedMonthYear.split("-")[0];
+        filteredPublications = filteredPublications.filter(pub => {
+          const pubDateElem = pub.querySelector(".pub-date");
+          const pubDate = new Date(pubDateElem.textContent.trim());
+          const pubMonth = (pubDate.getMonth() + 1).toString().padStart(2, "0");
+          const pubYear = pubDate.getFullYear().toString();
+          return pubMonth === selectedMonthNum && pubYear === selectedYear;
+        });
+      }
+  
       const allChecked = checkboxes.length - 1 === selectedCategories.length;
-      if (selectAll) selectAll.checked = allChecked;
+      selectAll.checked = allChecked;
   
       currentPage = 1;
       showPage(currentPage);
@@ -119,36 +142,37 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
   
-    // Filter button handlers
     if (applyMonthOnlyFilterBtn) {
-      applyMonthOnlyFilterBtn.addEventListener("click", () => {
+      applyMonthOnlyFilterBtn.addEventListener("click", function () {
         disableOtherFilter("monthOnly");
         filterPublications();
       });
     }
   
     if (applyMonthYearFilterBtn) {
-      applyMonthYearFilterBtn.addEventListener("click", () => {
+      applyMonthYearFilterBtn.addEventListener("click", function () {
         disableOtherFilter("monthYear");
         filterPublications();
       });
     }
   
-    // Pagination controls
+    if (applyMonthBtn) {
+      applyMonthBtn.addEventListener("click", filterPublications);
+    }
+  
     if (prevBtn) {
-      prevBtn.addEventListener("click", () => {
+      prevBtn.addEventListener("click", function () {
         if (currentPage > 1) showPage(currentPage - 1);
       });
     }
   
     if (nextBtn) {
-      nextBtn.addEventListener("click", () => {
+      nextBtn.addEventListener("click", function () {
         const totalPages = Math.ceil(filteredPublications.length / itemsPerPage);
         if (currentPage < totalPages) showPage(currentPage + 1);
       });
     }
   
-    // Category checkbox filtering
     if (selectAll) {
       selectAll.addEventListener("change", function () {
         checkboxes.forEach(cb => (cb.checked = selectAll.checked));
@@ -160,7 +184,6 @@ document.addEventListener("DOMContentLoaded", function () {
       cb.addEventListener("change", filterPublications);
     });
   
-    // Initial filter
     filterPublications();
   });
   
