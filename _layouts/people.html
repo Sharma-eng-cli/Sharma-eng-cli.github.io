@@ -1,0 +1,10 @@
+---
+layout : default
+author_profile: true
+---
+
+{% capture people_content %}
+  {% include 'people.html' %}
+{% endcapture %}
+{{ people_content | markdownify }}
+
