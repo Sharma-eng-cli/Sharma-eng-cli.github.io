@@ -3,6 +3,10 @@
       {% if include.person.image %}
         <img src="{{ include.person.image | relative_url }}" alt="{{ include.person.name }}">
       {% endif %}
+      {% if person.image %}
+        <img src="{{ person.image | relative_url }}" alt="{{ person.name }}">
+      {% endif %}
+
     </div>
     <div class="person-card__info">
       <h2>{{ include.person.name }}</h2>
