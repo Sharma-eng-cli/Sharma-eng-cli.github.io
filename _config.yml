@@ -224,9 +224,9 @@ collections:
   portfolio:
     output: true
     permalink: /:collection/:path/
-  talks:
+  people:
     output: true
-    permalink: /:collection/:path/
+    permalink: /:people/:path/
   publications:
     output: true
     permalink: /publications/:title/
@@ -235,22 +235,26 @@ collections:
     permalink: /publications/:path/
   pages:
     output: true
+  updates:
+    output: true
+    permalink: /updates/:title/
+
 
 
 
 # These settings control how pages and collections are included in the site
 defaults:
   # _posts
-  - scope:
-      path: ""
-      type: posts
-    values:
-      layout: single
-      author_profile: true
-      read_time: true
-      comments: true
-      share: true
-      related: true
+  # - scope:
+  #     path: ""
+  #     type: posts
+  #   values:
+  #     layout: single
+  #     author_profile: true
+  #     read_time: true
+  #     comments: true
+  #     share: true
+  #     related: true
   # _pages
   - scope:
       path: ""
@@ -285,14 +289,15 @@ defaults:
       author_profile: true
       share: true
       comment: true
-  # _talks
+# _people (was _talks)
   - scope:
       path: ""
-      type: talks
+      type: people
     values:
-      layout: talk
+      layout: people
       author_profile: true
-      share: true
+      share: false
+      comments: false
 
 
 # Sass/SCSS

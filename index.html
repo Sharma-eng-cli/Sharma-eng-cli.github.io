@@ -5,6 +5,19 @@ author_profile: true  # Enables instructor profile in the sidebar
 permalink: /
 
 ---
+<!-- <section class="latest-updates">
+  <h3>Latest Updates</h3>
+  <ul class="updates-list">
+    {% assign recent_updates = site.updates | sort: "date" | reverse | slice: 0,3 %}
+    {% for update in recent_updates %}
+      <li class="update-post">
+        <h4><a href="{{ update.url }}">{{ update.title }}</a></h4>
+        <p>{{ update.excerpt | strip_html | truncatewords: 15 }}</p>
+      </li>
+    {% endfor %}
+  </ul>
+</section>
+--- -->
 <!-- ---
 
 Welcome to **My Education Platform**, an innovative learning platform designed to provide high-quality educational resources, interactive courses, and expert guidance to students, professionals, and lifelong learners. Our mission is to make education accessible, engaging, and tailored to meet diverse learning needs.
