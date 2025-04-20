@@ -226,7 +226,7 @@ collections:
     permalink: /:collection/:path/
   people:
     output: true
-    permalink: /people/:path/
+    permalink: /people/:name/
   publications:
     output: true
     permalink: /publications/:title/
@@ -235,9 +235,7 @@ collections:
     permalink: /publications/:path/
   pages:
     output: true
-  updates:
-    output: true
-    permalink: /updates/:title/
+
 
 
 
