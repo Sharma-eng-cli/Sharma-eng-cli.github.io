@@ -1,76 +1,42 @@
+---
+---
+
 /*
  * This file controls what is imported from /_sass
  *
  * Note that the files are processed in the order they are imported, so they are partly
- * sorted by the dependencies. Also, the first two lines of the file are required by Jekyll.
+   sorted by the dependencies. Also, the first two lines of the file are required by Jekyll.
  */
 
-// Import vendor and theme files
-@import "vendor/breakpoint/breakpoint";
-@import "themes";
-@import "theme/{{ site.site_theme | default: 'default' }}";
+{@import 
+    "vendor/breakpoint/breakpoint",
 
-// Import mixins
-@import "include/mixins";
+    "themes",
+    "theme/{{ site.site_theme | default: 'default' }}",
 
-// Import layout files
-@import "layout/reset";
-@import "layout/base";
-@import "include/utilities";
-@import "layout/tables";
-@import "layout/buttons";
-@import "layout/notices";
-@import "layout/masthead";
-@import "layout/navigation";
-@import "layout/footer";
-@import "syntax";
-@import "layout/forms";
-@import "layout/page";
-@import "layout/archive";
-@import "layout/sidebar";
+    "include/mixins",
+    "vendor/susy/susy",
 
-// Import vendor libraries
-@import "vendor/font-awesome/fontawesome";
-@import "vendor/font-awesome/solid";
-@import "vendor/font-awesome/brands";
-@import "vendor/magnific-popup/magnific-popup";
+    "layout/reset",
+    "layout/base",
 
-// Custom styles for the sidebar
-.sidebar__custom-box {
-  margin-top: 1rem;
-  padding: 1rem;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-}
+    "include/utilities",
+    "layout/tables",
+    "layout/buttons",
+    "layout/notices",
+    "layout/masthead",
+    "layout/navigation",
+    "layout/footer",
+    "syntax",
 
-.sidebar__title {
-  margin-bottom: 0.5rem;
-  font-size: 1.1rem;
-  font-weight: bold;
-  color: #007acc;
-}
+    "layout/forms",
 
-.sidebar__list {
-  list-style: none;
-  padding-left: 0;
-}
-
-.sidebar__item {
-  margin-bottom: 0.5rem;
-}
-
-.sidebar__item a {
-  text-decoration: none;
-  color: #333;
-}
-
-.sidebar__item a:hover {
-  text-decoration: underline;
-}
-
-.sidebar__no-updates {
-  font-style: italic;
-  color: #777;
-  margin: 0.5rem 0 0;
-}
+    "layout/page",
+    "layout/archive",
+    "layout/sidebar",
+    
+    "vendor/font-awesome/fontawesome",
+    "vendor/font-awesome/solid",
+    "vendor/font-awesome/brands",
+    "vendor/magnific-popup/magnific-popup"
+;}
