@@ -232,6 +232,9 @@ collections:
     permalink: /publications/:path/
   pages:
     output: true
+  people:
+    output: true
+    permalink: /people/:name/
 
 
 

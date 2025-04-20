@@ -1,0 +1,12 @@
+---
+layout: people
+title: "Our People"
+description: "Meet the amazing people behind the project."
+image: "/assets/images/people-banner.jpg"
+---
+
+Here is the list of all our talented people!
+{% capture people_content %}
+  {% include people_section.html %}
+{% endcapture %}
+{{ people_content | markdownify }}
