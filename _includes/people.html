@@ -1,7 +1,7 @@
----
+<!-- ---
 layout: default
----
-
+--- -->
+<!-- 
 {% include base_path %}
 
 {% if page.header.overlay_color or page.header.overlay_image or page.header.image %}
@@ -40,7 +40,7 @@ layout: default
         </header>
       {% endunless %}
       
-  
+   -->
 
 <section class="page__content" itemprop="text">
   {% if page.image or page.name %}
@@ -56,11 +56,13 @@ layout: default
   <ul class="people-list">
     {% for person in site.people %}
       <li class="people-card">
-        {% capture people_content %}
+        <!-- {% capture people_content %}
         {% include people-card.html %}
-        {% endcapture %}
+        {% endcapture %} -->
 
-        {{ people_conten  | markdownify }}
+        <!-- {{ people_conten  | markdownify }} -->
+
+        {% include people-card.html %}
       </li>
     {% endfor %}
   </ul>
@@ -73,7 +75,7 @@ layout: default
     </div>
   {% endif %}
 </section>
-
+<!-- 
       <footer class="page__meta">
         {% if site.data.ui-text[site.locale].meta_label %}
           <h4 class="page__meta-title">{{ site.data.ui-text[site.locale].meta_label }}</h4>
@@ -104,4 +106,4 @@ layout: default
       </div>
     </div>
   {% endif %}
-</div>
+</div> -->
