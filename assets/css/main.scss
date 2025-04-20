@@ -7,7 +7,7 @@
  * Note that the files are processed in the order they are imported, so they are partly
    sorted by the dependencies. Also, the first two lines of the file are required by Jekyll.
  */
-
+{
 @import 
     "vendor/breakpoint/breakpoint",
 
@@ -39,4 +39,45 @@
     "vendor/font-awesome/solid",
     "vendor/font-awesome/brands",
     "vendor/magnific-popup/magnific-popup"
-;
+;}
+
+
+
+// homepage sidebar
+.sidebar__custom-box {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.sidebar__title {
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #007acc;
+}
+
+.sidebar__list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.sidebar__item {
+  margin-bottom: 0.5rem;
+}
+
+.sidebar__item a {
+  text-decoration: none;
+  color: #333;
+}
+
+.sidebar__item a:hover {
+  text-decoration: underline;
+}
+.sidebar__no-updates {
+  font-style: italic;
+  color: #777;
+  margin: 0.5rem 0 0;
+}

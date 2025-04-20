@@ -39,11 +39,38 @@ layout: default
 
         </header>
       {% endunless %}
-
+      
       <section class="page__content" itemprop="text">
-        {{ content }}
-        {% if page.link %}<div><a href="{{ page.link }}" class="btn">{{ site.data.ui-text[site.locale].ext_link_label | default: "Direct Link" }}</a></div>{% endif %}
+        {% if page.image or page.name %}
+          <div class="profile-card">
+            <img src="{{ page.image }}" alt="{{ page.name }}" class="people-photo"/>
+            <h2>{{ page.name }}</h2>
+            <p><strong>{{ page.role }}</strong></p>
+            <p>{{ page.introduction }}</p>
+          </div>
+        {% endif %}
+      
+        <ul class="people-list">
+          {% for person in site.people %}
+            <li class="people-card">
+              <img src="{{ person.image }}" alt="{{ person.name }}" class="people-photo"/>
+              <h3><a href="{{ person.url }}">{{ person.name }}</a></h3>
+              <p><strong>{{ person.role }}</strong></p>
+              <p>{{ person.introduction }}</p>
+            </li>
+          {% endfor %}
+        </ul>
+      
+        {% if page.link %}
+          <div>
+            <a href="{{ page.link }}" class="btn">
+              {{ site.data.ui-text[site.locale].ext_link_label | default: "Direct Link" }}
+            </a>
+          </div>
+        {% endif %}
       </section>
+      
+      
 
       <footer class="page__meta">
         {% if site.data.ui-text[site.locale].meta_label %}

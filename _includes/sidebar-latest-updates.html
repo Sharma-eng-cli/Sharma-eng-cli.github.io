@@ -1,0 +1,17 @@
+<div class="sidebar__custom-box">
+    <h3 class="sidebar__title">Latest Updates</h3>
+    {% assign recent_updates = site.updates | sort: "date" | reverse %}
+    {% if recent_updates.size > 0 %}
+      <ul class="sidebar__list">
+        {% for update in recent_updates %}
+          <li class="sidebar__item">
+            <span class="sidebar__date">{{ update.date | date: "%b %d, %Y" }}</span><br>
+            <a href="{{ update.url }}">{{ update.title }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="sidebar__no-updates">No updates available at the moment.</p>
+    {% endif %}
+  </div>
+  
