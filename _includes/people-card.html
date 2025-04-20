@@ -1,7 +1,7 @@
 <div class="person-card">
     <div class="person-card__image">
       {% if include.person.image %}
-        <img src="{{ include.person.image | relative_url }}" alt="{{ include.person.name }}">
+      <img src="{{ include.person.image | relative_url }}" alt="{{ include.person.name }}" style="width:150px; height:auto; border:1px solid red;">
       {% endif %}
     </div>
     <div class="person-card__info">
