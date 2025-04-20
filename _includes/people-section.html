@@ -1,7 +1,3 @@
----
-layout: default
----
-
 {% include base_path %}
 
 <div id="main" role="main">
@@ -25,15 +21,10 @@ layout: default
         {% endif %}
 
         <ul class="people-list">
-          {% for person in site.pages %}
-            {% if person.url contains '/_people/' %}
-              <li class="people-card">
-                {% capture person_content %}
-                  {% include people-card.html person=person %}
-                {% endcapture %}
-                {{ person_content }}
-              </li>
-            {% endif %}
+          {% for person in site.people %}
+            <li class="people-card">
+              {% include people-card.html person=person %}
+            </li>
           {% endfor %}
         </ul>
 
@@ -45,7 +36,6 @@ layout: default
           </div>
         {% endif %}
       </section>
-
     </div>
   </article>
 </div>
