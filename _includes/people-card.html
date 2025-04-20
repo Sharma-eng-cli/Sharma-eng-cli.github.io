@@ -3,19 +3,18 @@
       {% if include.person.image %}
         <img src="{{ include.person.image | relative_url }}" alt="{{ include.person.name }}">
       {% endif %}
-      {% if person.image %}
-        <img src="{{ person.image | relative_url }}" alt="{{ person.name }}">
-      {% endif %}
-
     </div>
     <div class="person-card__info">
-      <h2>{{ include.person.name }}</h2>
+      <h2 class="person-card__name">{{ include.person.name }}</h2>
+      
       {% if include.person.role %}
         <p class="person-card__role">{{ include.person.role }}</p>
       {% endif %}
+  
       {% if include.person.introduction %}
         <p class="person-card__intro">{{ include.person.introduction }}</p>
       {% endif %}
+  
       {% if include.person.link %}
         <p class="person-card__link">
           <a href="{{ include.person.link }}" target="_blank" rel="noopener">More Info</a>
