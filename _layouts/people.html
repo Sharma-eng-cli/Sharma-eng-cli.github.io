@@ -1,12 +1,13 @@
 ---
-layout: people
+layout: default
 title: "Our People"
 description: "Meet the amazing people behind the project."
 image: "/assets/images/themes/3953273590_704e3899d5_m.jpg"
+author_profile: true  # Enables instructor profile in the sidebar
 ---
-
-Here is the list of all our talented people!
+{% include people-section.html %}
+<!-- Here is the list of all our talented people!
 {% capture people_content %}
   {% include people-section.html %}
 {% endcapture %}
-{{ people_content | markdownify }}
+{{ people_content | markdownify }} -->

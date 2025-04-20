@@ -1,20 +1,20 @@
 <div class="person-card">
     <div class="person-card__image">
-      {% if person.image %}
-        <img src="{{ person.image | relative_url }}" alt="{{ person.name }}">
+      {% if include.person.image %}
+        <img src="{{ include.person.image | relative_url }}" alt="{{ include.person.name }}">
       {% endif %}
     </div>
     <div class="person-card__info">
-      <h2 class="person-card__name">{{ person.name }}</h2>
-      {% if person.role %}
-        <p class="person-card__role">{{ person.role }}</p>
+      <h2>{{ include.person.name }}</h2>
+      {% if include.person.role %}
+        <p class="person-card__role">{{ include.person.role }}</p>
       {% endif %}
-      {% if person.introduction %}
-        <p class="person-card__intro">{{ person.introduction }}</p>
+      {% if include.person.introduction %}
+        <p class="person-card__intro">{{ include.person.introduction }}</p>
       {% endif %}
-      {% if person.link %}
+      {% if include.person.link %}
         <p class="person-card__link">
-          <a href="{{ person.link }}" target="_blank" rel="noopener">More Info</a>
+          <a href="{{ include.person.link }}" target="_blank" rel="noopener">More Info</a>
         </p>
       {% endif %}
     </div>
