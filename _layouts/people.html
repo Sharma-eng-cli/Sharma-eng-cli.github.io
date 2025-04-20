@@ -1,0 +1,49 @@
+---
+layout: default
+---
+
+{% include base_path %}
+
+<div id="main" role="main">
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <div class="page__inner-wrap">
+      <header>
+        <h1 class="page__title" itemprop="headline">{{ page.title }}</h1>
+        {% if page.description %}
+          <p class="page__meta">{{ page.description }}</p>
+        {% endif %}
+      </header>
+
+      <section class="page__content" itemprop="text">
+        {% if page.image or page.name %}
+          <div class="profile-card">
+            <img src="{{ page.image }}" alt="{{ page.name }}" class="people-photo"/>
+            <h2>{{ page.name }}</h2>
+            <p><strong>{{ page.role }}</strong></p>
+            <p>{{ page.introduction }}</p>
+          </div>
+        {% endif %}
+
+        <ul class="people-list">
+          {% for person in site.people %}
+            <li class="people-card">
+              {% capture person_content %}
+                {% include people-card.html person=person %}
+              {% endcapture %}
+              {{ person_content }}
+            </li>
+          {% endfor %}
+        </ul>
+
+        {% if page.link %}
+          <div>
+            <a href="{{ page.link }}" class="btn">
+              {{ site.data.ui-text[site.locale].ext_link_label | default: "Direct Link" }}
+            </a>
+          </div>
+        {% endif %}
+      </section>
+
+    </div>
+  </article>
+</div>

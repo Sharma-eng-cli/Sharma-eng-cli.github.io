@@ -9,8 +9,7 @@ main:
     url: /publications/
 
   - title: "People"
-    url: /people/
-   
+    url: /people/    
 
   - title: "Teaching"
     url: /teaching/    
@@ -18,11 +17,8 @@ main:
   - title: "Portfolio"
     url: /portfolio/
         
-  # - title: "Blog Posts"
-  #   url: /year-archive/
-  - title: "Updates"
-    url: /updates/
-
+  - title: "Blog Posts"
+    url: /year-archive/
     
   - title: "CV"
     url: /cv/
