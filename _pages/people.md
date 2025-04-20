@@ -8,4 +8,4 @@ permalink: /people/
   {% include people.html %}
 {% endcapture %}
 
-{{ people_content | markdownify }}
+{{ people_content }}
