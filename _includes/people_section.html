@@ -25,13 +25,15 @@ layout: default
         {% endif %}
 
         <ul class="people-list">
-          {% for person in site.people %}
-            <li class="people-card">
-              {% capture person_content %}
-                {% include people-card.html person=person %}
-              {% endcapture %}
-              {{ person_content }}
-            </li>
+          {% for person in site.pages %}
+            {% if person.url contains '/_people/' %}
+              <li class="people-card">
+                {% capture person_content %}
+                  {% include people-card.html person=person %}
+                {% endcapture %}
+                {{ person_content }}
+              </li>
+            {% endif %}
           {% endfor %}
         </ul>
 
