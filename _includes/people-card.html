@@ -1,0 +1,22 @@
+<div class="person-card">
+    <div class="person-card__image">
+      {% if page.image %}
+        <img src="{{ page.image | relative_url }}" alt="{{ page.name }}">
+      {% endif %}
+    </div>
+    <div class="person-card__info">
+      <h2 class="person-card__name">{{ page.name }}</h2>
+      {% if page.role %}
+        <p class="person-card__role">{{ page.role }}</p>
+      {% endif %}
+      {% if page.introduction %}
+        <p class="person-card__intro">{{ page.introduction }}</p>
+      {% endif %}
+      {% if page.link %}
+        <p class="person-card__link">
+          <a href="{{ page.link }}" target="_blank" rel="noopener">More Info</a>
+        </p>
+      {% endif %}
+    </div>
+  </div>
+  
